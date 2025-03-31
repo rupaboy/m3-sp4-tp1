@@ -82,6 +82,29 @@ import {
 // Router
 const router = express.Router();
 
+
+
+/*
+mongoDBRouter.get('/', (req, res) => {
+    res.render('mongodb', {currentNav: siteNav[2], webModule, collectionsMenu})
+})
+
+mongoDBRouter.get('/heroes', async (req, res) => {
+    try {
+        
+        const arrayHeroes = await superhero.find()
+        res.render('heroes', { currentNav: siteNav[2], collectionsMenu, webModule, arrayHeroes })
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+*/
+
+
+
+
 //GET
 //Collection
 
