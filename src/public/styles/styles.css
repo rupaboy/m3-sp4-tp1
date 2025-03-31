@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #aaa;
+    color:azure;
+}
+
+main {
+    display: grid;
+}
+
+#mainHeader {
+    color: #404040;
+    display:flex;
+    gap: .8em;
+    background-color: orange;
+    border-bottom: 2px solid chocolate;
+}
+
+#mainFooter {
+    border-top: 4px solid orange;
+    color: #202020;
+}
+
+#mainHeader h3 {
+    color: white;
+    margin-left:.7em;
+    line-height: 2.5em;
+    padding-right: .7em;
+    border-right: 1px solid chocolate;
+}
+
+#mainHeader h4 {
+    text-align: right;
+    line-height: 3em;
+    padding-right:.2em;
+}
+
+nav {
+    margin-left: auto;
+    padding: .4em;
+}
+
+nav button {
+    color: white;
+    padding:.5em;
+    background-color:#606060;
+    border: 1px solid chocolate;
+}
+
+nav button:hover {
+    background-color: slategray;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    max-width: max-content;
+}
+
+main {
+    display: grid;
+    color: gainsboro;
+    background-color:#404040;
+    margin-bottom: 35em;
+    
+    
+}
+
+main h5 {
+    text-align: right;
+    text-transform: uppercase;
+    padding-top:1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+}
+
+main h6 {
+    padding:.8em;
+    text-align: center;
+    font-style: italic;
+}
+
+main div {
+    display: flex;
+    min-width: calc(100vw - 2em);
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: small;
+    font-weight: 700;
+    font-style: italic;
+    color: #202020;
+    user-select: none;
+    background-color: #202020;
+    border-bottom: 2px solid #303030;
+    border-bottom-right-radius: 1em;
+    border-top-left-radius: 1em;
+}
+
+main div header {
+    padding: 5px;
+    min-width: 22vw;
+    background-color: orange;
+    border-bottom-right-radius: 1em;
+    border-top-left-radius: 1em;
+}
+
+main div:hover {
+    background-color: #606060;
+    color:white;
+}
+
+main div footer {
+    padding: 5px;
+    margin: auto;
+    color: gold;
+    border-bottom-right-radius: 1em;
+}
+
+
+main button {
+    max-width: max-content;
+    bottom: 2.5em;
+    left: 1em;
+    font-weight: 400;
+    
+    background-color: slategray;
+    color: white;
+    border: 1px solid #808080;
+    margin-bottom: .2em;
+}
+
+main button:hover {
+    background-color:#606060;
+    cursor: pointer;
+}
+
+main table {
+    line-height: 1.2em;
+    margin-top:.7em;
+    border-collapse: collapse;
+    border-top-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    width: 100%;
+    color: white;
+    background-color: #606060;
+    
+}
+
+main thead th {
+    background-color: gold;
+    border-top-left-radius: 1em;
+    color: #404040;
+}
+
+main tbody {
+    font-size: small;
+    
+}
+
+main table tbody th {
+    padding-right: .5em;
+    text-align: right;
+    background-color: orange;
+    color: #202020;
+}
+
+main table tbody td {
+    padding-left: .5em;
+}
