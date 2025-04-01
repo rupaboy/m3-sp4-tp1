@@ -10,7 +10,7 @@ export const siteNav = [
                 id: 0,
                 isActive: false,
                 name: 'DashBoard',
-                link: '/',
+                link: '/api/heroes',
             },
             {
                 id: 1,
