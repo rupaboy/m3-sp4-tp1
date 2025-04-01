@@ -1,20 +1,23 @@
 <%- include('partials/head') %>
 
 <body>
-    <%- include('partials/menu') %>
 
     <main>
 
-        <h5>
-            &ddarr; <%= collectionsMenu[0].name %>
-        </h5>
+        <%- include('partials/menu') %>
 
-            <a href="/mongodb">
-                <p><%= currentNav.navPages[1].name %></p>
-            </a>
+        <main>
     
-        <h6>
-            <%= collectionsMenu[0].description %>
+            <h5>
+                &ddarr; <%= collectionsMenu[0].name %>
+            </h5>
+        
+            <h6>
+                <%= collectionsMenu[0].description %>
+            </h6>
+
+    <h6>
+            <%= superheroes[0].nombreSuperHeroe %>
         </h6>
     </main>
 

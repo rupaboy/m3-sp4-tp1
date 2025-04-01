@@ -40,47 +40,47 @@ import {
 
 } from '../validators/superheroesBodyRules.mjs';
 
-    //Controllers
+    //CliControllers
 import { 
-    obtenerTodosLosSuperheroesPorIdController,
-    obtenerTodosLosSuperheroesController,
-    obtenerSuperheroePorIdController,
-    obtenerSuperheroesMasPoderososController,
-    obtenerSuperheroesMenosPoderososController,
-    obtenerSuperheroesSinPoderesController,
-    obtenerSuperheroesMasPoderososPlanetaController,
-    obtenerSuperheroesMenosPoderososPlanetaController,
-    obtenerSuperheroesSinPoderesPlanetaController,
-    buscarSuperheroesPorAtributoController,
-    buscarIdSuperheroesPorAtributoController,
-    //agregarNuevoSuperheroeController,
-    agregarNuevoTemplateSuperheroeController,
-    agregarNuevoArraySuperheroesController,
-    //editarSuperheroePorIdAtributoValorController,
-    editarNombreSuperheroePorIdController,
-    editarNombreRealSuperheroePorIdController,
-    editarEdadSuperheroePorIdController,
-    editarPlanetaOrigenSuperheroePorIdController,
-    editarDebilidadSuperheroePorIdController,
-    editarPoderesSuperheroePorIdController,
-    editarAliadosSuperheroePorIdController,
-    editarEnemigosSuperheroePorIdController,
-    editarSuperheroePorIdAgregarPoderController,
-    editarSuperheroePorIdQuitarPoderController,
-    editarSuperheroePorIdAgregarAliadoController,
-    editarSuperheroePorIdQuitarAliadoController,
-    editarSuperheroePorIdAgregarEnemigoController,
-    editarSuperheroePorIdQuitarEnemigoController,
-    //editarSuperheroePorIdController,
-    borrarSuperheroePorIdController,
-    borrarSuperheroePorNombreController,
-    agregarNuevoSuperheroeController,
+    obtenerTodosLosSuperheroesPorIdCliController,
+    obtenerTodosLosSuperheroesCliController,
+    obtenerSuperheroePorIdCliController,
+    obtenerSuperheroesMasPoderososCliController,
+    obtenerSuperheroesMenosPoderososCliController,
+    obtenerSuperheroesSinPoderesCliController,
+    obtenerSuperheroesMasPoderososPlanetaCliController,
+    obtenerSuperheroesMenosPoderososPlanetaCliController,
+    obtenerSuperheroesSinPoderesPlanetaCliController,
+    buscarSuperheroesPorAtributoCliController,
+    buscarIdSuperheroesPorAtributoCliController,
+    //agregarNuevoSuperheroeCliController,
+    agregarNuevoTemplateSuperheroeCliController,
+    agregarNuevoArraySuperheroesCliController,
+    //editarSuperheroePorIdAtributoValorCliController,
+    editarNombreSuperheroePorIdCliController,
+    editarNombreRealSuperheroePorIdCliController,
+    editarEdadSuperheroePorIdCliController,
+    editarPlanetaOrigenSuperheroePorIdCliController,
+    editarDebilidadSuperheroePorIdCliController,
+    editarPoderesSuperheroePorIdCliController,
+    editarAliadosSuperheroePorIdCliController,
+    editarEnemigosSuperheroePorIdCliController,
+    editarSuperheroePorIdAgregarPoderCliController,
+    editarSuperheroePorIdQuitarPoderCliController,
+    editarSuperheroePorIdAgregarAliadoCliController,
+    editarSuperheroePorIdQuitarAliadoCliController,
+    editarSuperheroePorIdAgregarEnemigoCliController,
+    editarSuperheroePorIdQuitarEnemigoCliController,
+    //editarSuperheroePorIdCliController,
+    borrarSuperheroePorIdCliController,
+    borrarSuperheroePorNombreCliController,
+    agregarNuevoSuperheroeCliController,
     
-} from '../controllers/superheroesController.mjs';
+} from '../controllers/superheroesCliController.mjs';
 
 
 // Router
-const router = express.Router();
+const cliRouter = express.Router();
 
 
 
@@ -96,83 +96,83 @@ mongoDBRouter.get('/', (req, res) => {
 //GET
 //Collection
 
-router.get('/heroes/mas-poderosos',
-    obtenerSuperheroesMasPoderososController);
+cliRouter.get('/heroes/mas-poderosos',
+    obtenerSuperheroesMasPoderososCliController);
 
-router.get('/heroes/menos-poderosos',
-    obtenerSuperheroesMenosPoderososController);
+cliRouter.get('/heroes/menos-poderosos',
+    obtenerSuperheroesMenosPoderososCliController);
 
-router.get('/heroes/sin-poderes',
-    obtenerSuperheroesSinPoderesController);
+cliRouter.get('/heroes/sin-poderes',
+    obtenerSuperheroesSinPoderesCliController);
         
-router.get('/heroes/mas-poderosos/:valor', //Valor debe ser un planeta
+cliRouter.get('/heroes/mas-poderosos/:valor', //Valor debe ser un planeta
     lowLevelParamStringSanitizer(),
     lowLevelParamStringValidations(),
     validationHandler,
-    obtenerSuperheroesMasPoderososPlanetaController);
+    obtenerSuperheroesMasPoderososPlanetaCliController);
 
-router.get('/heroes/menos-poderosos/:valor', //Valor debe ser un planeta
+cliRouter.get('/heroes/menos-poderosos/:valor', //Valor debe ser un planeta
     lowLevelParamStringSanitizer(),
     lowLevelParamStringValidations(),
     validationHandler,
-    obtenerSuperheroesMenosPoderososPlanetaController);
+    obtenerSuperheroesMenosPoderososPlanetaCliController);
 
-router.get('/heroes/sin-poderes/:valor', //Valor debe ser un planeta
+cliRouter.get('/heroes/sin-poderes/:valor', //Valor debe ser un planeta
     lowLevelParamStringSanitizer(),
     lowLevelParamStringValidations(),
     validationHandler,
-    obtenerSuperheroesSinPoderesPlanetaController);
+    obtenerSuperheroesSinPoderesPlanetaCliController);
 
-router.get('/heroes', obtenerTodosLosSuperheroesController); //Listar todos los heroes
+cliRouter.get('/heroes', obtenerTodosLosSuperheroesCliController); //Listar todos los heroes
 
-router.get('/heroes/id', obtenerTodosLosSuperheroesPorIdController); //Listar todos con Id
+cliRouter.get('/heroes/id', obtenerTodosLosSuperheroesPorIdCliController); //Listar todos con Id
 
-router.get('/heroes/id/:id', //Buscar héroe por Id
+cliRouter.get('/heroes/id/:id', //Buscar héroe por Id
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     validationHandler,
-    obtenerSuperheroePorIdController);
+    obtenerSuperheroePorIdCliController);
 
-router.get('/heroes/:atributo/:valor', //Búscar por atributo valor,funcionamiento sub-optimo
+cliRouter.get('/heroes/:atributo/:valor', //Búscar por atributo valor,funcionamiento sub-optimo
     attributeParamSanitizer(),
     byAttributeParamValidations(),
     validationHandler,
-    buscarSuperheroesPorAtributoController);
+    buscarSuperheroesPorAtributoCliController);
 
-router.get('/heroes/id/:atributo/:valor', //Búscar Id por atributo valor, funcionamiento sub-optimo
+cliRouter.get('/heroes/id/:atributo/:valor', //Búscar Id por atributo valor, funcionamiento sub-optimo
     attributeParamSanitizer(),
     byAttributeParamValidations(),
     validationHandler,
-    buscarIdSuperheroesPorAtributoController)
+    buscarIdSuperheroesPorAtributoCliController)
 
 //POST
 
-router.post('/heroes/nuevo/',
+cliRouter.post('/heroes/nuevo/',
     highLevelBodyStringSanitizer(),
     highLevelBodyArraySanitizer(),
     lowLevelBodyStringValidations(),
     lowLevelBodyArrayValidations(),
     lowLevelBodyNumberValidations(),
     validationHandler,
-    agregarNuevoSuperheroeController)
+    agregarNuevoSuperheroeCliController)
 
 
-router.post('/heroes/nuevo/template',
-    agregarNuevoTemplateSuperheroeController) //Template ../helper/templateHeroeNuevo.mjs
+cliRouter.post('/heroes/nuevo/template',
+    agregarNuevoTemplateSuperheroeCliController) //Template ../helper/templateHeroeNuevo.mjs
 
-router.post('/heroes/nuevo/array', 
-    agregarNuevoArraySuperheroesController) //Array ../helper/templateHeroeNuevo.mjs
+cliRouter.post('/heroes/nuevo/array', 
+    agregarNuevoArraySuperheroesCliController) //Array ../helper/templateHeroeNuevo.mjs
 
 
 //PUT
 /*
-router.put('heroes/:id/:atributo/:valor', (req, res) => {   // Funcionamiento suboptimo.
+cliRouter.put('heroes/:id/:atributo/:valor', (req, res) => {   // Funcionamiento suboptimo.
     const { id, atributo, valor } = req.params              // Deprecated.
         putValorValidation(id, atributo, valor),
-        editarSuperheroePorIdAtributoValorController})      // Abajo nuevas funcionalidades.
+        editarSuperheroePorIdAtributoValorCliController})      // Abajo nuevas funcionalidades.
 */
 
-router.put('/heroes/:id/nombreSuperHeroe/:valor', //Valor: nuevo nombre
+cliRouter.put('/heroes/:id/nombreSuperHeroe/:valor', //Valor: nuevo nombre
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
@@ -180,9 +180,9 @@ router.put('/heroes/:id/nombreSuperHeroe/:valor', //Valor: nuevo nombre
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarNombreSuperheroePorIdController);
+    editarNombreSuperheroePorIdCliController);
 
-router.put('/heroes/:id/nombreReal/:valor', //Valor: nuevo nombre real
+cliRouter.put('/heroes/:id/nombreReal/:valor', //Valor: nuevo nombre real
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
@@ -190,17 +190,17 @@ router.put('/heroes/:id/nombreReal/:valor', //Valor: nuevo nombre real
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarNombreRealSuperheroePorIdController);
+    editarNombreRealSuperheroePorIdCliController);
 
-router.put('/heroes/:id/edad/:valor', //Valor: nueva edad
+cliRouter.put('/heroes/:id/edad/:valor', //Valor: nueva edad
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     lowLevelParamNumberValidations(),
     lowLevelBodyNumberValidations(),
     validationHandler,
-    editarEdadSuperheroePorIdController);
+    editarEdadSuperheroePorIdCliController);
 
-router.put('/heroes/:id/planetaOrigen/:valor', //Valor: nuevo planeta
+cliRouter.put('/heroes/:id/planetaOrigen/:valor', //Valor: nuevo planeta
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
@@ -208,9 +208,9 @@ router.put('/heroes/:id/planetaOrigen/:valor', //Valor: nuevo planeta
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarPlanetaOrigenSuperheroePorIdController);
+    editarPlanetaOrigenSuperheroePorIdCliController);
 
-router.put('/heroes/:id/debilidad/:valor', //Valor: nueva debilidad
+cliRouter.put('/heroes/:id/debilidad/:valor', //Valor: nueva debilidad
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
@@ -218,9 +218,9 @@ router.put('/heroes/:id/debilidad/:valor', //Valor: nueva debilidad
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarDebilidadSuperheroePorIdController);
+    editarDebilidadSuperheroePorIdCliController);
 
-router.put('/heroes/:id/poderes/:valor', //Valor: nuevo Array de poderes (separar con ,)
+cliRouter.put('/heroes/:id/poderes/:valor', //Valor: nuevo Array de poderes (separar con ,)
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamArraySanitizer(),
@@ -228,9 +228,9 @@ router.put('/heroes/:id/poderes/:valor', //Valor: nuevo Array de poderes (separa
     highLevelBodyArraySanitizer(),
     lowLevelBodyArrayValidations(),
     validationHandler,
-    editarPoderesSuperheroePorIdController);
+    editarPoderesSuperheroePorIdCliController);
 
-router.put('/heroes/:id/aliados/:valor', //Valor: nuevo Array de aliados (separar con ,)
+cliRouter.put('/heroes/:id/aliados/:valor', //Valor: nuevo Array de aliados (separar con ,)
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamArraySanitizer(),
@@ -238,9 +238,9 @@ router.put('/heroes/:id/aliados/:valor', //Valor: nuevo Array de aliados (separa
     highLevelBodyArraySanitizer(),
     lowLevelBodyArrayValidations(),
     validationHandler,
-    editarAliadosSuperheroePorIdController);
+    editarAliadosSuperheroePorIdCliController);
 
-router.put('/heroes/:id/enemigos/:valor', //Valor: nuevo Array de enemigos (separar con ,)
+cliRouter.put('/heroes/:id/enemigos/:valor', //Valor: nuevo Array de enemigos (separar con ,)
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamArraySanitizer(),
@@ -248,9 +248,9 @@ router.put('/heroes/:id/enemigos/:valor', //Valor: nuevo Array de enemigos (sepa
     highLevelBodyArraySanitizer(),
     lowLevelBodyArrayValidations(),
     validationHandler,
-    editarEnemigosSuperheroePorIdController);
+    editarEnemigosSuperheroePorIdCliController);
 
-router.put('/heroes/:id/agregar/poder/:valor', //Valor: nuevo Poder
+cliRouter.put('/heroes/:id/agregar/poder/:valor', //Valor: nuevo Poder
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
@@ -258,9 +258,9 @@ router.put('/heroes/:id/agregar/poder/:valor', //Valor: nuevo Poder
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarSuperheroePorIdAgregarPoderController);
+    editarSuperheroePorIdAgregarPoderCliController);
 
-router.put('/heroes/:id/quitar/poder/:valor', //Valor: quitar un poder
+cliRouter.put('/heroes/:id/quitar/poder/:valor', //Valor: quitar un poder
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     lowLevelParamStringSanitizer(),
@@ -268,10 +268,10 @@ router.put('/heroes/:id/quitar/poder/:valor', //Valor: quitar un poder
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarSuperheroePorIdQuitarPoderController)
+    editarSuperheroePorIdQuitarPoderCliController)
 
 
-router.put('/heroes/:id/agregar/aliado/:valor', //Valor: nuevo aliado
+cliRouter.put('/heroes/:id/agregar/aliado/:valor', //Valor: nuevo aliado
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
@@ -279,10 +279,10 @@ router.put('/heroes/:id/agregar/aliado/:valor', //Valor: nuevo aliado
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarSuperheroePorIdAgregarAliadoController)
+    editarSuperheroePorIdAgregarAliadoCliController)
 
 
-router.put('/heroes/:id/quitar/aliado/:valor', //Valor: quitar un aliado
+cliRouter.put('/heroes/:id/quitar/aliado/:valor', //Valor: quitar un aliado
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     lowLevelParamStringSanitizer(),
@@ -290,10 +290,10 @@ router.put('/heroes/:id/quitar/aliado/:valor', //Valor: quitar un aliado
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarSuperheroePorIdQuitarAliadoController)
+    editarSuperheroePorIdQuitarAliadoCliController)
 
 
-router.put('/heroes/:id/agregar/enemigo/:valor', //Valor: nuevo enemigo
+cliRouter.put('/heroes/:id/agregar/enemigo/:valor', //Valor: nuevo enemigo
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
@@ -301,10 +301,10 @@ router.put('/heroes/:id/agregar/enemigo/:valor', //Valor: nuevo enemigo
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarSuperheroePorIdAgregarEnemigoController)
+    editarSuperheroePorIdAgregarEnemigoCliController)
 
 
-router.put('/heroes/:id/quitar/enemigo/:valor', //Valor: quitar un enemigo
+cliRouter.put('/heroes/:id/quitar/enemigo/:valor', //Valor: quitar un enemigo
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     lowLevelParamStringSanitizer(),
@@ -312,10 +312,10 @@ router.put('/heroes/:id/quitar/enemigo/:valor', //Valor: quitar un enemigo
     highLevelBodyStringSanitizer(),
     midLevelBodyStringValidations(),
     validationHandler,
-    editarSuperheroePorIdQuitarEnemigoController)
+    editarSuperheroePorIdQuitarEnemigoCliController)
 
     /*
-router.post('/heroes/:id/editar', //Subóptimo. Nuevas funcionalidades arriba.
+cliRouter.post('/heroes/:id/editar', //Subóptimo. Nuevas funcionalidades arriba.
     mongoIdBodyValidator(),
     highLevelBodyStringSanitizer(),
     highLevelBodyArraySanitizer(),
@@ -323,22 +323,22 @@ router.post('/heroes/:id/editar', //Subóptimo. Nuevas funcionalidades arriba.
     lowLevelBodyArrayValidations(),
     lowLevelBodyNumberValidations(),
     validationHandler,
-    agregarNuevoSuperheroeController)
+    agregarNuevoSuperheroeCliController)
 */
 
-//router.put('/heroes/editar/:id'
-// ], editarSuperheroePorIdController) //..Pasa un id para editar. Deprecated.
+//cliRouter.put('/heroes/editar/:id'
+// ], editarSuperheroePorIdCliController) //..Pasa un id para editar. Deprecated.
 
 //DELETE
 
-router.delete('/heroes/id/:id', //Borrar por Id
+cliRouter.delete('/heroes/id/:id', //Borrar por Id
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
-    borrarSuperheroePorIdController)
+    borrarSuperheroePorIdCliController)
 
-router.delete('/heroes/nombre/:valor', //Valor: Nombre de héroe a borrar
+cliRouter.delete('/heroes/nombre/:valor', //Valor: Nombre de héroe a borrar
     lowLevelParamStringValidations(),
     lowLevelBodyStringValidations(),
-    borrarSuperheroePorNombreController)
+    borrarSuperheroePorNombreCliController)
 
-export default router;
+export default cliRouter;

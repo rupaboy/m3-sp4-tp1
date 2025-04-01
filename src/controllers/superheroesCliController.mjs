@@ -45,15 +45,9 @@ import {
     renderizarListaSuperheroes,
     renderizarSuperheroePorId} from '../views/responseView.mjs';
 
-import {
-    
-    collectionsMenu,
-    webModule,
-    siteNav} from '../views/renderElement.mjs';
-    
 
     
-export async function obtenerSuperheroePorIdController(req, res) {
+export async function obtenerSuperheroePorIdCliController(req, res) {
     try {
         const {id} = req.params;
         const superheroe = await obtenerSuperheroePorId(id);
@@ -69,7 +63,7 @@ export async function obtenerSuperheroePorIdController(req, res) {
     }
 }
 
-export async function obtenerTodosLosSuperheroesPorIdController(req, res) {
+export async function obtenerTodosLosSuperheroesPorIdCliController(req, res) {
     try {
         const superheroes = await obtenerTodosLosSuperheroes();
         if (!superheroes) {
@@ -83,18 +77,18 @@ export async function obtenerTodosLosSuperheroesPorIdController(req, res) {
     }
 }
 
-export async function obtenerTodosLosSuperheroesController(req, res) {
+export async function obtenerTodosLosSuperheroesCliController(req, res) {
     try {
         const superheroes = await obtenerTodosLosSuperheroes();
-
-        res.render('heroes', {superheroes, siteNav, webModule, collectionsMenu});
+        const superheroesFormateados = renderizarListaSuperheroes(superheroes);
+        res.status(200).json(superheroesFormateados);
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al obtener los Superhéroes',
             error: error.message });
     }
 }
 
-export async function buscarSuperheroesPorAtributoController(req, res) {
+export async function buscarSuperheroesPorAtributoCliController(req, res) {
     try {
         const {atributo, valor} = req.params;
         const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
@@ -111,7 +105,7 @@ export async function buscarSuperheroesPorAtributoController(req, res) {
     }
 }
 
-export async function buscarIdSuperheroesPorAtributoController(req, res) {
+export async function buscarIdSuperheroesPorAtributoCliController(req, res) {
     try {
         const {atributo, valor} = req.params;
         const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
@@ -128,7 +122,7 @@ export async function buscarIdSuperheroesPorAtributoController(req, res) {
     }
 }
 
-export async function obtenerSuperheroesMasPoderososController(req, res) {
+export async function obtenerSuperheroesMasPoderososCliController(req, res) {
     try {
         const superheroes = await obtenerSuperheroesMasPoderosos();
         if (superheroes.length === 0) {
@@ -144,7 +138,7 @@ export async function obtenerSuperheroesMasPoderososController(req, res) {
     }
 }
 
-export async function obtenerSuperheroesMasPoderososPlanetaController(req, res) {
+export async function obtenerSuperheroesMasPoderososPlanetaCliController(req, res) {
     try {
         const {valor} = req.params;
         const superheroes = await obtenerSuperheroesMasPoderososPlaneta(valor);
@@ -161,7 +155,7 @@ export async function obtenerSuperheroesMasPoderososPlanetaController(req, res) 
     }
 }
 
-export async function obtenerSuperheroesMenosPoderososController(req, res) {
+export async function obtenerSuperheroesMenosPoderososCliController(req, res) {
     try {
         const superheroes = await obtenerSuperheroesMenosPoderosos();
         
@@ -178,7 +172,7 @@ export async function obtenerSuperheroesMenosPoderososController(req, res) {
     }
 }
 
-export async function obtenerSuperheroesMenosPoderososPlanetaController(req, res) {
+export async function obtenerSuperheroesMenosPoderososPlanetaCliController(req, res) {
     try {
         const {valor} = req.params;
         const superheroes = await obtenerSuperheroesMenosPoderososPlaneta(valor);
@@ -195,7 +189,7 @@ export async function obtenerSuperheroesMenosPoderososPlanetaController(req, res
     }
 }
 
-export async function obtenerSuperheroesSinPoderesController(req, res) {
+export async function obtenerSuperheroesSinPoderesCliController(req, res) {
     try {
         const superheroes = await obtenerSuperheroesSinPoderes();
         if (superheroes.length === 0) {
@@ -212,7 +206,7 @@ export async function obtenerSuperheroesSinPoderesController(req, res) {
 }
 
 
-export async function obtenerSuperheroesSinPoderesPlanetaController(req, res) {
+export async function obtenerSuperheroesSinPoderesPlanetaCliController(req, res) {
     try {
         const {valor} = req.params;
         const superheroes = await obtenerSuperheroesSinPoderesPlaneta(valor);
@@ -229,7 +223,7 @@ export async function obtenerSuperheroesSinPoderesPlanetaController(req, res) {
     }
 }
 
-export async function agregarNuevoSuperheroeController(req, res) {
+export async function agregarNuevoSuperheroeCliController(req, res) {
     try {
         const {nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador} = req.body
         //console.log(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
@@ -247,7 +241,7 @@ export async function agregarNuevoSuperheroeController(req, res) {
     }
 }
 
-export async function agregarNuevoTemplateSuperheroeController(req, res) {
+export async function agregarNuevoTemplateSuperheroeCliController(req, res) {
     try {
         
         const superheroeCreado = await agregarNuevoTemplateSuperheroe()
@@ -264,7 +258,7 @@ export async function agregarNuevoTemplateSuperheroeController(req, res) {
     }
 }
 
-export async function agregarNuevoArraySuperheroesController(req, res) {
+export async function agregarNuevoArraySuperheroesCliController(req, res) {
     try {
         
         const superheroesCreados = await agregarNuevoArraySuperheroes()
@@ -284,7 +278,7 @@ export async function agregarNuevoArraySuperheroesController(req, res) {
 
 //METODOS PUT
 
-export async function editarSuperheroePorIdController(req, res) {
+export async function editarSuperheroePorIdCliController(req, res) {
     try {
         const {id} = req.params;
         const superheroeEditado = await editarSuperheroePorId(id)
@@ -302,7 +296,7 @@ export async function editarSuperheroePorIdController(req, res) {
     }
 }
 
-export async function editarSuperheroePorIdAtributoValorController(req, res) {
+export async function editarSuperheroePorIdAtributoValorCliController(req, res) {
     try {
         const {id, atributo, valor} = req.params;
         const superheroe = await editarSuperheroePorIdAtributoValor(id, atributo, valor);
@@ -318,7 +312,7 @@ export async function editarSuperheroePorIdAtributoValorController(req, res) {
     }
 }
 
-export async function editarNombreSuperheroePorIdController(req, res) {
+export async function editarNombreSuperheroePorIdCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarNombreSuperheroePorId(id, valor);
@@ -335,7 +329,7 @@ export async function editarNombreSuperheroePorIdController(req, res) {
     }
 }
 
-export async function editarNombreRealSuperheroePorIdController(req, res) {
+export async function editarNombreRealSuperheroePorIdCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarNombreRealSuperheroePorId(id, valor);
@@ -352,7 +346,7 @@ export async function editarNombreRealSuperheroePorIdController(req, res) {
     }
 }
 
-export async function editarEdadSuperheroePorIdController(req, res) {
+export async function editarEdadSuperheroePorIdCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarEdadSuperheroePorId(id, valor);
@@ -369,7 +363,7 @@ export async function editarEdadSuperheroePorIdController(req, res) {
     }
 }
 
-export async function editarPlanetaOrigenSuperheroePorIdController(req, res) {
+export async function editarPlanetaOrigenSuperheroePorIdCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarPlanetaOrigenSuperheroePorId(id, valor);
@@ -386,7 +380,7 @@ export async function editarPlanetaOrigenSuperheroePorIdController(req, res) {
     }
 }
 
-export async function editarDebilidadSuperheroePorIdController(req, res) {
+export async function editarDebilidadSuperheroePorIdCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarDebilidadSuperheroePorId(id, valor);
@@ -403,7 +397,7 @@ export async function editarDebilidadSuperheroePorIdController(req, res) {
     }
 }
 
-export async function editarPoderesSuperheroePorIdController(req, res) {
+export async function editarPoderesSuperheroePorIdCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarPoderesSuperheroePorId(id, valor);
@@ -420,7 +414,7 @@ export async function editarPoderesSuperheroePorIdController(req, res) {
     }
 }
 
-export async function editarAliadosSuperheroePorIdController(req, res) {
+export async function editarAliadosSuperheroePorIdCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarAliadosSuperheroePorId(id, valor);
@@ -437,7 +431,7 @@ export async function editarAliadosSuperheroePorIdController(req, res) {
     }
 }
 
-export async function editarEnemigosSuperheroePorIdController(req, res) {
+export async function editarEnemigosSuperheroePorIdCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarEnemigosSuperheroePorId(id, valor);
@@ -454,7 +448,7 @@ export async function editarEnemigosSuperheroePorIdController(req, res) {
     }
 }
 //
-export async function editarSuperheroePorIdAgregarPoderController(req, res) {
+export async function editarSuperheroePorIdAgregarPoderCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarSuperheroePorIdAgregarPoder(id, valor);
@@ -471,7 +465,7 @@ export async function editarSuperheroePorIdAgregarPoderController(req, res) {
     }
 }
 
-export async function editarSuperheroePorIdQuitarPoderController(req, res) {
+export async function editarSuperheroePorIdQuitarPoderCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarSuperheroePorIdQuitarPoder(id, valor);
@@ -488,7 +482,7 @@ export async function editarSuperheroePorIdQuitarPoderController(req, res) {
     }
 }
 
-export async function editarSuperheroePorIdAgregarAliadoController(req, res) {
+export async function editarSuperheroePorIdAgregarAliadoCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarSuperheroePorIdAgregarAliado(id, valor);
@@ -505,7 +499,7 @@ export async function editarSuperheroePorIdAgregarAliadoController(req, res) {
     }
 }
 
-export async function editarSuperheroePorIdQuitarAliadoController(req, res) {
+export async function editarSuperheroePorIdQuitarAliadoCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarSuperheroePorIdQuitarAliado(id, valor);
@@ -522,7 +516,7 @@ export async function editarSuperheroePorIdQuitarAliadoController(req, res) {
     }
 }
 
-export async function editarSuperheroePorIdAgregarEnemigoController(req, res) {
+export async function editarSuperheroePorIdAgregarEnemigoCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarSuperheroePorIdAgregarEnemigo(id, valor);
@@ -539,7 +533,7 @@ export async function editarSuperheroePorIdAgregarEnemigoController(req, res) {
     }
 }
 
-export async function editarSuperheroePorIdQuitarEnemigoController(req, res) {
+export async function editarSuperheroePorIdQuitarEnemigoCliController(req, res) {
     try {
         const {id, valor} = req.params;
         const superheroe = await editarSuperheroePorIdQuitarEnemigo(id, valor);
@@ -557,7 +551,7 @@ export async function editarSuperheroePorIdQuitarEnemigoController(req, res) {
 }
 
 
-export async function borrarSuperheroePorIdController(req, res) {
+export async function borrarSuperheroePorIdCliController(req, res) {
     try {
         const {id} = req.params;
         const superheroeBorradoPorId = await borrarSuperheroePorId(id);
@@ -576,7 +570,7 @@ export async function borrarSuperheroePorIdController(req, res) {
     }
 }
 
-export async function borrarSuperheroePorNombreController(req, res) {
+export async function borrarSuperheroePorNombreCliController(req, res) {
     try {
         const {valor} = req.params;
         const superheroeBorradoPorNombre = await borrarSuperheroePorNombre(valor);

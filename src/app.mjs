@@ -1,10 +1,15 @@
-import express from 'express';
-import { connectDB } from './config/dbConfig.mjs'
-import { siteNav, webModule } from './views/renderElement.mjs';
-import router from './routes/superHeroRoutes.mjs'
-import bodyParser from 'body-parser'
 import path from 'path';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cliRouter from './routes/superHeroCliRoutes.mjs';
+import router from './routes/superHeroRoutes.mjs';
+import { connectDB } from './config/dbConfig.mjs';
 import { fileURLToPath } from 'url';
+
+import {
+    siteNav,
+    webModule
+        } from './views/renderElement.mjs';
 
 
 const app = express();
@@ -22,34 +27,25 @@ app.set('view engine', 'ejs'); //View Engine
 //Middleware
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('/public'));
+
+
+
+
+//Configuración de rutas
+app.use('/api/cli', cliRouter);
+app.use('/api/', router);
+
 //Manejo de errores para rutas no encontradas
 app.use((req,res,next) => {
     res.render('404', {siteNav})
 })
 
-//, {currentNav: siteNav[0], webModule}})
-/*
-//Main Route
-app.get('/', (req, res) => {    
-    res.render('index', {currentNav: siteNav[1], webModule});
-});
-*/
-/*
-//Collections
-app.get('/api/collections', (req, res) => {
-    res.render('collections', {currentNav: siteNav[2], webModule, collectionsMenu})
-});
-*/
 
 
 
 //Conexión a MongoDB
 connectDB();
-
-
-//Configuración de rutas
-app.use('/api', router);
 
 
 //Iniciar el servidor
