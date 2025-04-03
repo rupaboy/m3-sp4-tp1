@@ -56,16 +56,17 @@ export async function obtenerSuperheroePorIdController(req, res) {
     try {
         const {id} = req.params;
         const superheroe = await obtenerSuperheroePorId(id);
-        const activeSite = {...site, isActive: 'id'};
+        const activeSite = {...site, isActive: 'result'};
         if (!superheroe) {
             return res.status(404).send({ mensaje: 'Superhéroe por _id no encontrado' });
-        } 
-        res.render('heroesPorId', {superheroe, site: activeSite });
+        }
+        res.render('result', {superheroe, site: activeSite });
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al obtener Superheroe por _id',
             error: error.message });
     }
 }
+/*
 
 export async function obtenerTodosLosSuperheroesPorIdController(req, res) {
     try {
@@ -80,6 +81,7 @@ export async function obtenerTodosLosSuperheroesPorIdController(req, res) {
             error: error.message });
     }
 }
+*/
 
 export async function obtenerTodosLosSuperheroesController(req, res) {
     try {
@@ -91,7 +93,7 @@ export async function obtenerTodosLosSuperheroesController(req, res) {
             error: error.message });
     }
 }
-
+/*
 export async function buscarSuperheroesPorAtributoController(req, res) {
     try {
         const {atributo, valor} = req.params;
@@ -226,7 +228,7 @@ export async function obtenerSuperheroesSinPoderesPlanetaController(req, res) {
             error: error.message });
     }
 }
-/*
+
 (req,res) => {
     const activeSite = {...site, isActive: 'add'}
     res.render('addSuperhero', { site: activeSite } )
@@ -245,6 +247,14 @@ export async function editarSuperheroeController(req, res) {
     res.render('editSuperhero', { site: activeSite , superheroe } )
 }
 
+export async function borrarSuperheroeController(req, res) {
+    const {id} = req.params;
+    const superheroe = await obtenerSuperheroePorId(id);
+    const activeSite = {...site, isActive: 'delete'}
+    res.render('deleteSuperhero', { site: activeSite , superheroe } )
+}
+
+
 export async function agregarNuevoSuperheroeController(req, res) {
     try {
         const {nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador} = req.body
@@ -261,6 +271,8 @@ export async function agregarNuevoSuperheroeController(req, res) {
             error: error.message });
     }
 }
+
+/*
 
 export async function agregarNuevoTemplateSuperheroeController(req, res) {
     try {
@@ -297,6 +309,8 @@ export async function agregarNuevoArraySuperheroesController(req, res) {
     }
 }
 
+*/
+
 //METODOS PUT
 
 export async function editarSuperheroePorIdController(req, res) {
@@ -316,7 +330,7 @@ export async function editarSuperheroePorIdController(req, res) {
             error: error.message });
     }
 }
-
+/*
 export async function editarSuperheroePorIdAtributoValorController(req, res) {
     try {
         const {id, atributo, valor} = req.params;
@@ -571,23 +585,21 @@ export async function editarSuperheroePorIdQuitarEnemigoController(req, res) {
     }
 }
 
-
+*/
 export async function borrarSuperheroePorIdController(req, res) {
     try {
         const {id} = req.params;
-        const superheroeBorradoPorId = await borrarSuperheroePorId(id);
+        const superheroe = await borrarSuperheroePorId(id);
         //console.log(superheroeBorrado)
-        if (superheroeBorradoPorId.lenght === 0) {
+        if (superheroe.lenght === 0) {
             return res.status(404).send(
                 { mensaje: 'No se encontró una _id para borrar superhéroe'});
         }
-        const superheroeFormateado = renderizarSuperheroePorId(superheroeBorradoPorId)
-        res.status(200).json(superheroeFormateado);
+        res.redirect(`/api/heroes`);
     } catch (error) {
         res.status(500).send (
             {mensaje: 'Error al borrar superhéroe por Id',
             error: error.message });
-        
     }
 }
 

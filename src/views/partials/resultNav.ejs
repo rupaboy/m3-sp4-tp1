@@ -1,0 +1,25 @@
+
+<aside class="w-full bg-slate-700 border-b border-slate-800 text-xs flex justify-start px-10">
+
+    <a href="/api/heroes/editar/id/<%= superheroe._id %>">
+        <button
+            class="select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 py-1 px-2"
+            id="<%= site.resultNav[0].id %>">
+
+            <p>&#x270D;</p>
+            <p class="text-slate-400"><%= site.resultNav[0].id %></p>
+        </button>
+    </a>
+    
+    <a href="/api/heroes/borrar/id/<%= superheroe._id %>">
+        <button
+            class="select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 py-1 px-2"
+            id="<%= site.resultNav[1].id %>">
+
+            <p>&#10006;</p>
+            <p class="text-slate-400"><%= site.resultNav[1].id %></p>
+        </button>
+    </a>
+
+
+</aside>

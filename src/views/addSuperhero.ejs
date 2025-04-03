@@ -11,14 +11,14 @@
 
     <%- include('partials/addNav') %>
     
-<main class="flex-1 flex flex-wrap justify-center m-4 gap-1">
+<main class="flex-1 flex flex-wrap justify-center m-4 gap-1 text-gray-200">
     
     
         <div class="w-[25em] bg-slate-700 border-2 border-slate-600">
 
             <header class="grid grid-cols-1 px-3 pt-1 rounded-br-full bg-stone-900 select-none">
                 <input
-                    class="col-span-6 font-black select-text"
+                    class="text-gray-200 col-span-6 font-black select-text"
                     type="text"
                     required
                     placeholder="Nombre del nuevo Héroe"
@@ -27,9 +27,10 @@
             </header>
 
             <main class="text-sm grid grid-cols-5 p-1">
-                <span class="select-none text-right pr-2 text-slate-950">Nombre:</span>
+                <label for="nombreReal" class="select-none text-right pr-2 text-yellow-400">Nombre:</label>
                 <input
                     class="col-span-4"
+                    id="nombreReal"
                     type="text"
                     required
                     placeholder="Nombre Real (Ej: Clark Kent)"
@@ -38,15 +39,17 @@
             </main>
 
             <main class="text-sm grid grid-cols-5 p-1 bg-slate-600">
-                <span class="select-none text-right pr-2 text-slate-950">Edad:</span>
+                <label for="edad" class="select-none text-right pr-2 text-yellow-400">Edad:</label>
                 <input
+                    id="edad"
                     type="number"
                     min="0"
                     placeholder="Nº años"
                     name="edad">
 
-                <span class="select-none text-right pr-2 text-slate-950">Orígen:</span>
+                <label for="planetaOrigen" class="select-none text-right pr-2 text-yellow-400">Orígen:</label>
                 <input
+                    id="planetaOrigen"
                     class="col-span-2"
                     type="text"
                     placeholder="Planeta (Ej: Kriptón)"
@@ -55,8 +58,9 @@
             </main>
 
             <main class="text-sm grid p-1 bg-slate-700 grid grid-cols-5">
-                <span class="select-none text-right pr-2 col-span-1 text-slate-950">Debilidad:</span>
+                <label for="debilidad" class="select-none text-right pr-2 col-span-1 text-yellow-400">Debilidad:</label>
                 <input
+                    id="debilidad"
                     class="col-span-4"
                     type="text"
                     placeholder="Vulnerabilidad o limitación (Ej. Kriptonita)"
@@ -65,8 +69,9 @@
 
             
                 <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
-                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Poderes:</span>
+                    <label for="poderes" class="select-none text-right pr-2 col-span-1 text-yellow-400">Poderes:</label>
                     <input class="col-span-4"
+                        id="poderes"
                         type="text"
                         placeholder="Separados con comas. (Ej: Volar, Rayos X)"
                         name="poderes">
@@ -74,8 +79,9 @@
 
             
                 <main class="grid grid-cols-5 text-sm p-1 bg-slate-700">
-                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Aliados:</span>
+                    <label for="aliados" class="select-none text-right pr-2 col-span-1 text-yellow-400">Aliados:</label>
                     <input class="col-span-4"
+                        id="aliados"
                         type="text"    
                         placeholder="Separados con comas. (Ej: Ironman, Flash)"
                         name="aliados">
@@ -83,8 +89,9 @@
             
             
                 <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
-                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Enemigos:</span>
+                    <label for="enemigos" class="select-none text-right pr-2 col-span-1 text-yellow-400">Enemigos:</label>
                     <input
+                        id="enemigos"
                         class="col-span-4"
                         type="text"
                         placeholder="Separados con comas. (Ej: Mongul, Gog)"
@@ -93,8 +100,9 @@
             
 
             <main class="text-sm grid grid-cols-5 p-1 bg-slate-700">
-                <span class="select-none text-right pr-2 text-slate-950">Creador:</span>
+                <label for="creador" class="select-none text-right pr-2 text-yellow-400">Creador:</label>
                 <input
+                    id="creador"
                     class="col-span-4"
                     type="text"
                     placeholder="Nombre/apodo del gestor de la colección"
@@ -110,4 +118,3 @@
     <h5 class="text-center text-sm font-light text-gray-300 my-4"><%= site.subNav[0].description %></h5>
 
     <%- include('partials/footer') %>
-    

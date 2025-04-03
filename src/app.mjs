@@ -30,7 +30,7 @@ app.set('view engine', 'ejs'); //View Engine
 
 //Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded())
 app.use(methodOverride('_method')); // PUT y DELETE en formularios HTML
 app.use(express.static('/public'));
 

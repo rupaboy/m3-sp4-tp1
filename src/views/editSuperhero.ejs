@@ -7,21 +7,18 @@
     <%- include('partials/header') %>
 
     <!--FORMULARIO-->
-<form action="/api/heroes/editar/<%= superheroe._id %>?_method=PUT" method="POST">
-    
-    <input type="hidden" name="_method" value="PUT">
-    
+<form action="/api/heroes/id/<%= superheroe._id %>?_method=PUT" method="POST">
+
     <%- include('partials/editNav') %>
     
-<main class="flex-1 flex flex-wrap justify-center m-4 gap-1">
-    
+<main class="flex-1 flex flex-wrap justify-center m-4 gap-1 text-gray-200">
     
         <div class="w-[25em] bg-slate-700 border-2 border-slate-600">
 
             <header class="grid grid-cols-1 px-3 pt-1 rounded-br-full bg-stone-900 select-none">
                 <input
                     value="<%= superheroe.nombreSuperHeroe %>"
-                    class="col-span-6 font-black select-text"
+                    class="text-gray-200 col-span-6 font-black select-text"
                     type="text"
                     required
                     placeholder="Nombre del nuevo Héroe"
@@ -30,10 +27,11 @@
             </header>
 
             <main class="text-sm grid grid-cols-5 p-1">
-                <span class="select-none text-right pr-2 text-slate-950">Nombre:</span>
+                <label for="nombreReal" class="select-none text-right pr-2 text-yellow-400">Nombre:</label>
                 <input
                     value="<%= superheroe.nombreReal %>"
                     class="col-span-4"
+                    id="nombreReal"
                     type="text"
                     required
                     placeholder="Nombre Real (Ej: Clark Kent)"
@@ -42,17 +40,19 @@
             </main>
 
             <main class="text-sm grid grid-cols-5 p-1 bg-slate-600">
-                <span class="select-none text-right pr-2 text-slate-950">Edad:</span>
+                <label for="edad" class="select-none text-right pr-2 text-yellow-400">Edad:</label>
                 <input
                     value="<%= superheroe.edad %>"
+                    id="edad"
                     type="number"
                     min="0"
                     placeholder="Nº años"
                     name="edad">
 
-                <span class="select-none text-right pr-2 text-slate-950">Orígen:</span>
+                <label for="planetaOrigen" class="select-none text-right pr-2 text-yellow-400">Orígen:</label>
                 <input
                     value="<%= superheroe.planetaOrigen %>"
+                    id="planetaOrigen"
                     class="col-span-2"
                     type="text"
                     placeholder="Planeta (Ej: Kriptón)"
@@ -61,9 +61,10 @@
             </main>
 
             <main class="text-sm grid p-1 bg-slate-700 grid grid-cols-5">
-                <span class="select-none text-right pr-2 col-span-1 text-slate-950">Debilidad:</span>
+                <label for="debilidad" class="select-none text-right pr-2 col-span-1 text-yellow-400">Debilidad:</label>
                 <input
                     value="<%= superheroe.debilidad %>"
+                    id="debilidad"
                     class="col-span-4"
                     type="text"
                     placeholder="Vulnerabilidad o limitación (Ej. Kriptonita)"
@@ -71,41 +72,45 @@
             </main>
 
             
-                <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
-                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Poderes:</span>
-                    <input class="col-span-4"
-                        value="<%= superheroe.poderes %>"
-                        type="text"
-                        placeholder="Separados con comas. (Ej: Volar, Rayos X)"
-                        name="poderes">
-                </main>
+            <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
+                <label for="poderes" class="select-none text-right pr-2 col-span-1 text-yellow-400">Poderes:</label>
+                <input class="col-span-4"
+                    value="<%= superheroe.poderes%>"
+                    id="poderes"
+                    type="text"
+                    placeholder="Separados con comas. (Ej: Volar, Rayos X)"
+                    name="poderes">
+            </main>
 
             
-                <main class="grid grid-cols-5 text-sm p-1 bg-slate-700">
-                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Aliados:</span>
-                    <input class="col-span-4"
-                        value="<%= superheroe.aliados %>"
-                        type="text"    
-                        placeholder="Separados con comas. (Ej: Ironman, Flash)"
-                        name="aliados">
-                </main>
+            <main class="grid grid-cols-5 text-sm p-1 bg-slate-700">
+                <label for="aliados" class="select-none text-right pr-2 col-span-1 text-yellow-400">Aliados:</label>
+                <input class="col-span-4"
+                    value="<%= superheroe.aliados %>"
+                    id="aliados"
+                    type="text"    
+                    placeholder="Separados con comas. (Ej: Ironman, Flash)"
+                    name="aliados">
+            </main>
             
             
-                <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
-                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Enemigos:</span>
-                    <input
-                        value="<%= superheroe.enemigos %>"
-                        class="col-span-4"
-                        type="text"
-                        placeholder="Separados con comas. (Ej: Mongul, Gog)"
-                        name="enemigos">
-                </main>
+            <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
+                <label for="enemigos" class="select-none text-right pr-2 col-span-1 text-yellow-400">Enemigos:</label>
+                <input
+                    value="<%= superheroe.enemigos %>"
+                    id="enemigos"
+                    class="col-span-4"
+                    type="text"
+                    placeholder="Separados con comas. (Ej: Mongul, Gog)"
+                    name="enemigos">
+            </main>
             
 
             <main class="text-sm grid grid-cols-5 p-1 bg-slate-700">
-                <span class="select-none text-right pr-2 text-slate-950">Creador:</span>
+                <label for="creador" class="select-none text-right pr-2 text-yellow-400">Creador:</label>
                 <input
                     value="<%= superheroe.creador %>"
+                    id="creador"
                     class="col-span-4"
                     type="text"
                     placeholder="Nombre/apodo del gestor de la colección"

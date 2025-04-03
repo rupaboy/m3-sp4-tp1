@@ -6,17 +6,17 @@ export const site = {
     nav:
     [
         {
-            id: 'heroes',
-            title: 'Dashboard',
-            description: 'Colección Superhéroes',
-            link: '/api/heroes/',
-            isHidden: false,
-        },
-        {
             id: 'home',
             title: 'Home',
             description: 'fullstack JS mod 3 sp3 tp3 | grupo 8 | rupaboy',
             link: '/api/',
+            isHidden: false,
+        },
+        {
+            id: 'heroes',
+            title: 'Dashboard',
+            description: 'Colección Superhéroes',
+            link: '/api/heroes/',
             isHidden: false,
         },
         {
@@ -67,7 +67,22 @@ export const site = {
             isHidden: false,
         },
     ],
-    idNav:
+    deleteNav:
+    [    
+        {
+            id: 'confirm',
+            title: 'Confirmar Eliminación',
+            description: 'Elimina el superhéroe de la colección',
+            isHidden: false,
+        },
+        {
+            id: 'cancel',
+            title: 'Cancelar eliminación',
+            description: 'Cancela la eliminación del superhéroe.',
+            isHidden: false,
+        },
+    ],
+    resultNav:
     [    
         {
             id: 'edit',
@@ -79,6 +94,15 @@ export const site = {
             id: 'del',
             title: 'Eliminar Héroe',
             description: 'Elimina a éste superhéroe de la colección',
+            isHidden: false,
+        },
+    ],
+    trashNav:
+    [    
+        {
+            id: 'recover',
+            title: 'Recuperar Héroe',
+            description: 'Devuelve el superhéroe a la colección',
             isHidden: false,
         },
     ],

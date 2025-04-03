@@ -42,40 +42,41 @@ import {
 
     //Controllers
 import { 
-    obtenerTodosLosSuperheroesPorIdController,
+    //obtenerTodosLosSuperheroesPorIdController,
     obtenerTodosLosSuperheroesController,
     obtenerSuperheroePorIdController,
-    obtenerSuperheroesMasPoderososController,
-    obtenerSuperheroesMenosPoderososController,
-    obtenerSuperheroesSinPoderesController,
-    obtenerSuperheroesMasPoderososPlanetaController,
-    obtenerSuperheroesMenosPoderososPlanetaController,
-    obtenerSuperheroesSinPoderesPlanetaController,
-    buscarSuperheroesPorAtributoController,
-    buscarIdSuperheroesPorAtributoController,
+    //obtenerSuperheroesMasPoderososController,
+    //obtenerSuperheroesMenosPoderososController,
+    //obtenerSuperheroesSinPoderesController,
+    //obtenerSuperheroesMasPoderososPlanetaController,
+    //obtenerSuperheroesMenosPoderososPlanetaController,
+    //obtenerSuperheroesSinPoderesPlanetaController,
+    //buscarSuperheroesPorAtributoController,
+    //buscarIdSuperheroesPorAtributoController,
     //agregarNuevoSuperheroeController,
     crearNuevoSuperheroeController,
-    agregarNuevoTemplateSuperheroeController,
-    agregarNuevoArraySuperheroesController,
+    //agregarNuevoTemplateSuperheroeController,
+    //agregarNuevoArraySuperheroesController,
     //editarSuperheroePorIdAtributoValorController,
     editarSuperheroeController,
+    borrarSuperheroeController,
     editarSuperheroePorIdController,
-    editarNombreSuperheroePorIdController,
-    editarNombreRealSuperheroePorIdController,
-    editarEdadSuperheroePorIdController,
-    editarPlanetaOrigenSuperheroePorIdController,
-    editarDebilidadSuperheroePorIdController,
-    editarPoderesSuperheroePorIdController,
-    editarAliadosSuperheroePorIdController,
-    editarEnemigosSuperheroePorIdController,
-    editarSuperheroePorIdAgregarPoderController,
-    editarSuperheroePorIdQuitarPoderController,
-    editarSuperheroePorIdAgregarAliadoController,
-    editarSuperheroePorIdQuitarAliadoController,
-    editarSuperheroePorIdAgregarEnemigoController,
-    editarSuperheroePorIdQuitarEnemigoController,
+    //editarNombreSuperheroePorIdController,
+    //editarNombreRealSuperheroePorIdController,
+    //editarEdadSuperheroePorIdController,
+    //editarPlanetaOrigenSuperheroePorIdController,
+    //editarDebilidadSuperheroePorIdController,
+    //editarPoderesSuperheroePorIdController,
+    //editarAliadosSuperheroePorIdController,
+    //editarEnemigosSuperheroePorIdController,
+    //editarSuperheroePorIdAgregarPoderController,
+    //editarSuperheroePorIdQuitarPoderController,
+    //editarSuperheroePorIdAgregarAliadoController,
+    //editarSuperheroePorIdQuitarAliadoController,
+    //editarSuperheroePorIdAgregarEnemigoController,
+    //editarSuperheroePorIdQuitarEnemigoController,
     borrarSuperheroePorIdController,
-    borrarSuperheroePorNombreController,
+    //borrarSuperheroePorNombreController,
     agregarNuevoSuperheroeController,
     
 } from '../controllers/superheroesController.mjs';
@@ -122,7 +123,9 @@ router.get('/heroes', obtenerTodosLosSuperheroesController); //Listar todos los 
 
 router.get('/heroes/nuevo', crearNuevoSuperheroeController);
 
-router.get('/heroes/editar/:id', editarSuperheroeController);
+router.get('/heroes/editar/id/:id', editarSuperheroeController);
+
+router.get('/heroes/borrar/id/:id', borrarSuperheroeController);
 
 router.get('/heroes/id/:id', //Buscar héroe por Id
     mongoIdParamValidator(),
@@ -166,7 +169,7 @@ router.post('/heroes/nuevo/array',
 */
 //PUT
 
-router.put('/heroes/editar/:id',
+router.put('/heroes/id/:id',
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     highLevelBodyStringSanitizer(),
@@ -332,12 +335,12 @@ router.post('/heroes/:id/editar', //Subóptimo. Nuevas funcionalidades arriba.
 */
 
 //DELETE
-/*
+
 router.delete('/heroes/id/:id', //Borrar por Id
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     borrarSuperheroePorIdController)
-
+/*
 router.delete('/heroes/nombre/:valor', //Valor: Nombre de héroe a borrar
     lowLevelParamStringValidations(),
     lowLevelBodyStringValidations(),
