@@ -1,18 +1,28 @@
 <%- include('partials/head') %>
+    <%- include('partials/menu') %>
 
-<body>
-     <%- include('partials/menu') %>
+    <%- include('partials/header') %>
+    
+    <main class="flex-1">
+        
+        <% if (localServerIsUp === true) { %>
+            <main class="px-2 min-h-10 flex text-xs bg-slate-700 items-center">
+                <h4>Local Server is:<h4 class="mx-2 font-black text-green-400">Up</h4> <h4 class="p-1 rounded-full bg-cyan-800 border border-cyan-900">:<%= PORT %></h4></h4>
+            </main>
 
-    <main>
-        <h5>
-            &ddarr; <%= webModule[1].title %>
-        </h5>
+            <main class="px-2 min-h-10 flex text-xs bg-slate-600 items-center">
+                <h4>Running since: <h4 class="mx-2"> <%= localServerUpTime %></h4></h4>
+            </main>
+
+            <main class="px-2 min-h-10 flex text-xs bg-slate-700 items-center">
+                <h4>Platform:<h4 class="px-1 capitalize"><%= os.platform %></h4></h4>
+                <h4 class="italic"><%= os.arch %></h4>
+                <h4 class="px-1">| Memory: <%= freeMemory %>/<%= totalMemory %> GB </h4>
+            </main>
+        <% } %>
 
     </main>
 
-    <footer id="mainFooter">
+    <h5 class="text-center text-sm font-light text-gray-300 my-4"><%= site.nav[1].description %></h5>
 
-    </footer>
-
-</body>
-</html>
+    <%- include('partials/footer') %>

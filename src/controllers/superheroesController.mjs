@@ -47,9 +47,8 @@ import {
 
 import {
     
-    collectionsMenu,
-    webModule,
-    siteNav} from '../views/renderElement.mjs';
+    site
+} from '../views/renderElement.mjs';
     
 
     
@@ -57,12 +56,11 @@ export async function obtenerSuperheroePorIdController(req, res) {
     try {
         const {id} = req.params;
         const superheroe = await obtenerSuperheroePorId(id);
+        const activeSite = {...site, isActive: 'id'};
         if (!superheroe) {
             return res.status(404).send({ mensaje: 'Superhéroe por _id no encontrado' });
-        }
-        //console.log(superheroe)
-        const superheroeFormateado = renderizarSuperheroePorId(superheroe);
-        res.status(200).json(superheroeFormateado);
+        } 
+        res.render('heroesPorId', {superheroe, site: activeSite });
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al obtener Superheroe por _id',
             error: error.message });
@@ -87,7 +85,7 @@ export async function obtenerTodosLosSuperheroesController(req, res) {
     try {
         const superheroes = await obtenerTodosLosSuperheroes();
 
-        res.render('heroes', {superheroes, siteNav, webModule, collectionsMenu});
+        res.render('heroes', {superheroes, site});
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al obtener los Superhéroes',
             error: error.message });
@@ -228,18 +226,28 @@ export async function obtenerSuperheroesSinPoderesPlanetaController(req, res) {
             error: error.message });
     }
 }
+/*
+(req,res) => {
+    const activeSite = {...site, isActive: 'add'}
+    res.render('addSuperhero', { site: activeSite } )
+}
+*/
+
+export async function crearNuevoSuperheroeController(req, res) {
+    const activeSite = {...site, isActive: 'add'}
+    res.render('addSuperhero', { site: activeSite } )
+}
 
 export async function agregarNuevoSuperheroeController(req, res) {
     try {
         const {nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador} = req.body
         //console.log(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
-        const superheroeCreado = await agregarNuevoSuperheroe(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
-        if (superheroeCreado.length === 0) {
+        const superheroe = await agregarNuevoSuperheroe(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
+        if (superheroe.length === 0) {
             return res.status(404).send(
                 { mensaje: 'No se encontró un superhéroe creado' });
         }
-        const superheroeFormateado = renderizarSuperheroe(superheroeCreado);
-        res.status(200).json(superheroeFormateado);
+        res.redirect(`/api/heroes/id/${superheroe._id}`);
     } catch (error) {
         res.status(500).send (
             { mensaje: 'Error al crear superhéroe',

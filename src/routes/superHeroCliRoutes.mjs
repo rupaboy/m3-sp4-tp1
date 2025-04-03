@@ -129,7 +129,6 @@ cliRouter.get('/heroes/id', obtenerTodosLosSuperheroesPorIdCliController); //Lis
 
 cliRouter.get('/heroes/id/:id', //Buscar héroe por Id
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     validationHandler,
     obtenerSuperheroePorIdCliController);
 
@@ -174,154 +173,107 @@ cliRouter.put('heroes/:id/:atributo/:valor', (req, res) => {   // Funcionamiento
 
 cliRouter.put('/heroes/:id/nombreSuperHeroe/:valor', //Valor: nuevo nombre
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
     midLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarNombreSuperheroePorIdCliController);
 
 cliRouter.put('/heroes/:id/nombreReal/:valor', //Valor: nuevo nombre real
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
     midLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarNombreRealSuperheroePorIdCliController);
 
 cliRouter.put('/heroes/:id/edad/:valor', //Valor: nueva edad
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     lowLevelParamNumberValidations(),
-    lowLevelBodyNumberValidations(),
     validationHandler,
     editarEdadSuperheroePorIdCliController);
 
 cliRouter.put('/heroes/:id/planetaOrigen/:valor', //Valor: nuevo planeta
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
     midLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarPlanetaOrigenSuperheroePorIdCliController);
 
 cliRouter.put('/heroes/:id/debilidad/:valor', //Valor: nueva debilidad
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
     midLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarDebilidadSuperheroePorIdCliController);
 
 cliRouter.put('/heroes/:id/poderes/:valor', //Valor: nuevo Array de poderes (separar con ,)
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamArraySanitizer(),
     lowLevelParamArrayValidations(),
-    highLevelBodyArraySanitizer(),
-    lowLevelBodyArrayValidations(),
     validationHandler,
     editarPoderesSuperheroePorIdCliController);
 
 cliRouter.put('/heroes/:id/aliados/:valor', //Valor: nuevo Array de aliados (separar con ,)
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamArraySanitizer(),
     lowLevelParamArrayValidations(),
-    highLevelBodyArraySanitizer(),
-    lowLevelBodyArrayValidations(),
     validationHandler,
     editarAliadosSuperheroePorIdCliController);
 
 cliRouter.put('/heroes/:id/enemigos/:valor', //Valor: nuevo Array de enemigos (separar con ,)
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamArraySanitizer(),
     lowLevelParamArrayValidations(),
-    highLevelBodyArraySanitizer(),
-    lowLevelBodyArrayValidations(),
     validationHandler,
     editarEnemigosSuperheroePorIdCliController);
 
 cliRouter.put('/heroes/:id/agregar/poder/:valor', //Valor: nuevo Poder
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
     midLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarSuperheroePorIdAgregarPoderCliController);
 
 cliRouter.put('/heroes/:id/quitar/poder/:valor', //Valor: quitar un poder
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     lowLevelParamStringSanitizer(),
     lowLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarSuperheroePorIdQuitarPoderCliController)
 
 
 cliRouter.put('/heroes/:id/agregar/aliado/:valor', //Valor: nuevo aliado
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
     midLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarSuperheroePorIdAgregarAliadoCliController)
 
 
 cliRouter.put('/heroes/:id/quitar/aliado/:valor', //Valor: quitar un aliado
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     lowLevelParamStringSanitizer(),
     lowLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarSuperheroePorIdQuitarAliadoCliController)
 
 
 cliRouter.put('/heroes/:id/agregar/enemigo/:valor', //Valor: nuevo enemigo
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     highLevelParamStringSanitizer(),
     midLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarSuperheroePorIdAgregarEnemigoCliController)
 
 
 cliRouter.put('/heroes/:id/quitar/enemigo/:valor', //Valor: quitar un enemigo
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     lowLevelParamStringSanitizer(),
     lowLevelParamStringValidations(),
-    highLevelBodyStringSanitizer(),
-    midLevelBodyStringValidations(),
     validationHandler,
     editarSuperheroePorIdQuitarEnemigoCliController)
 
     /*
 cliRouter.post('/heroes/:id/editar', //Subóptimo. Nuevas funcionalidades arriba.
-    mongoIdBodyValidator(),
-    highLevelBodyStringSanitizer(),
-    highLevelBodyArraySanitizer(),
-    lowLevelBodyStringValidations(),
-    lowLevelBodyArrayValidations(),
-    lowLevelBodyNumberValidations(),
     validationHandler,
     agregarNuevoSuperheroeCliController)
 */
@@ -333,12 +285,10 @@ cliRouter.post('/heroes/:id/editar', //Subóptimo. Nuevas funcionalidades arriba
 
 cliRouter.delete('/heroes/id/:id', //Borrar por Id
     mongoIdParamValidator(),
-    mongoIdBodyValidator(),
     borrarSuperheroePorIdCliController)
 
 cliRouter.delete('/heroes/nombre/:valor', //Valor: Nombre de héroe a borrar
     lowLevelParamStringValidations(),
-    lowLevelBodyStringValidations(),
     borrarSuperheroePorNombreCliController)
 
 export default cliRouter;

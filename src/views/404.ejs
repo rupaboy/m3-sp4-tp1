@@ -1,17 +1,11 @@
 <%- include('partials/head') %>
 <body>
     <%- include('partials/menu') %>
-    <main>
-        <h5>
-            La página web que buscas, no existe.
-        </h5> 
 
-    </main>
+    <%- include('partials/header') %>
+    
+<main class="flex-1"></main>
 
-    <footer id="mainFooter">
+<h5 class="text-center text-sm font-light text-gray-300 my-4"><%= site.nav[2].description %></h5>
 
-    </footer>
-
-</body>
-</body>
-</html>
+    <%- include('partials/footer') %>

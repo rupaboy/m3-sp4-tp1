@@ -54,9 +54,11 @@ import {
     buscarSuperheroesPorAtributoController,
     buscarIdSuperheroesPorAtributoController,
     //agregarNuevoSuperheroeController,
+    crearNuevoSuperheroeController,
     agregarNuevoTemplateSuperheroeController,
     agregarNuevoArraySuperheroesController,
     //editarSuperheroePorIdAtributoValorController,
+    editarSuperheroePorIdController,
     editarNombreSuperheroePorIdController,
     editarNombreRealSuperheroePorIdController,
     editarEdadSuperheroePorIdController,
@@ -71,31 +73,23 @@ import {
     editarSuperheroePorIdQuitarAliadoController,
     editarSuperheroePorIdAgregarEnemigoController,
     editarSuperheroePorIdQuitarEnemigoController,
-    //editarSuperheroePorIdController,
     borrarSuperheroePorIdController,
     borrarSuperheroePorNombreController,
     agregarNuevoSuperheroeController,
     
 } from '../controllers/superheroesController.mjs';
 
+import {
+    site
+        } from '../views/renderElement.mjs';
+
 
 // Router
 const router = express.Router();
 
-
-
-/*
-mongoDBRouter.get('/', (req, res) => {
-    res.render('mongodb', {currentNav: siteNav[2], webModule, collectionsMenu})
-})
-*/
-
-
-
-
 //GET
 //Collection
-
+/*
 router.get('/heroes/mas-poderosos',
     obtenerSuperheroesMasPoderososController);
 
@@ -122,16 +116,19 @@ router.get('/heroes/sin-poderes/:valor', //Valor debe ser un planeta
     lowLevelParamStringValidations(),
     validationHandler,
     obtenerSuperheroesSinPoderesPlanetaController);
-
+*/
 router.get('/heroes', obtenerTodosLosSuperheroesController); //Listar todos los heroes
 
-router.get('/heroes/id', obtenerTodosLosSuperheroesPorIdController); //Listar todos con Id
+router.get('/heroes/nuevo', crearNuevoSuperheroeController);
 
 router.get('/heroes/id/:id', //Buscar héroe por Id
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
     validationHandler,
     obtenerSuperheroePorIdController);
+
+/*
+router.get('/heroes/id', obtenerTodosLosSuperheroesPorIdController); //Listar todos con Id
 
 router.get('/heroes/:atributo/:valor', //Búscar por atributo valor,funcionamiento sub-optimo
     attributeParamSanitizer(),
@@ -144,7 +141,7 @@ router.get('/heroes/id/:atributo/:valor', //Búscar Id por atributo valor, funci
     byAttributeParamValidations(),
     validationHandler,
     buscarIdSuperheroesPorAtributoController)
-
+*/
 //POST
 
 router.post('/heroes/nuevo/',
@@ -156,22 +153,19 @@ router.post('/heroes/nuevo/',
     validationHandler,
     agregarNuevoSuperheroeController)
 
-
+/*
 router.post('/heroes/nuevo/template',
     agregarNuevoTemplateSuperheroeController) //Template ../helper/templateHeroeNuevo.mjs
 
 router.post('/heroes/nuevo/array', 
     agregarNuevoArraySuperheroesController) //Array ../helper/templateHeroeNuevo.mjs
 
-
-//PUT
-/*
-router.put('heroes/:id/:atributo/:valor', (req, res) => {   // Funcionamiento suboptimo.
-    const { id, atributo, valor } = req.params              // Deprecated.
-        putValorValidation(id, atributo, valor),
-        editarSuperheroePorIdAtributoValorController})      // Abajo nuevas funcionalidades.
 */
+//PUT
 
+router.put('/heroes/editar/:id',
+    editarSuperheroePorIdController) //..Pasa un id para editar.
+/*
 router.put('/heroes/:id/nombreSuperHeroe/:valor', //Valor: nuevo nombre
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
@@ -326,11 +320,8 @@ router.post('/heroes/:id/editar', //Subóptimo. Nuevas funcionalidades arriba.
     agregarNuevoSuperheroeController)
 */
 
-//router.put('/heroes/editar/:id'
-// ], editarSuperheroePorIdController) //..Pasa un id para editar. Deprecated.
-
 //DELETE
-
+/*
 router.delete('/heroes/id/:id', //Borrar por Id
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
@@ -340,5 +331,5 @@ router.delete('/heroes/nombre/:valor', //Valor: Nombre de héroe a borrar
     lowLevelParamStringValidations(),
     lowLevelBodyStringValidations(),
     borrarSuperheroePorNombreController)
-
+*/
 export default router;

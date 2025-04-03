@@ -13,7 +13,6 @@ import {
 export const lowLevelBodyStringSanitizer = () => [
     
     body('nombreSuperHeroe')
-    .optional()
     .customSanitizer(value => {
 
         const palabras = value //Limpia la repeticion de guiones, apostrofes y espacios
@@ -26,7 +25,6 @@ export const lowLevelBodyStringSanitizer = () => [
     }),
 
     body('nombreReal')
-    .optional()
     .customSanitizer(value => {
 
         const palabras = value //Limpia la repeticion de guiones, apostrofes y espacios
@@ -39,7 +37,6 @@ export const lowLevelBodyStringSanitizer = () => [
     }),
 
     body('planetaOrigen')
-    .optional()
     .customSanitizer(value => {
 
         const palabras = value //Limpia la repeticion de guiones, apostrofes y espacios
@@ -52,7 +49,6 @@ export const lowLevelBodyStringSanitizer = () => [
     }),
 
     body('debilidad')
-    .optional()
     .customSanitizer(value => {
 
         const palabras = value //Limpia la repeticion de guiones, apostrofes y espacios
@@ -69,7 +65,6 @@ export const lowLevelBodyStringSanitizer = () => [
 export const midLevelBodyStringSanitizer = () => [
     
     body('nombreSuperHeroe')
-    .optional()
     .customSanitizer(value => {
 
         const palabras = value
@@ -85,7 +80,6 @@ export const midLevelBodyStringSanitizer = () => [
         }),
 
     body('nombreReal')
-    .optional()
     .customSanitizer(value => {
 
         const palabras = value
@@ -101,7 +95,6 @@ export const midLevelBodyStringSanitizer = () => [
         }).
 
     body('planetaOrigen')
-    .optional()
     .customSanitizer(value => {
 
         const palabras = value
@@ -117,7 +110,6 @@ export const midLevelBodyStringSanitizer = () => [
         }),
 
     body('debilidad')
-    .optional()
     .customSanitizer(value => {
 
         const palabras = value
@@ -137,7 +129,6 @@ export const midLevelBodyStringSanitizer = () => [
 export const highLevelBodyStringSanitizer = () => [
     
     body('nombreSuperHeroe')
-    .optional()
     
     .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9' -]+$/).withMessage(
         `Sólo se permiten letras, números, espacios, apóstrofes (') y guiones medios (-).`) //OK
@@ -171,7 +162,6 @@ export const highLevelBodyStringSanitizer = () => [
     
     
     body('nombreReal')
-    .optional()
     
     .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9' -]+$/).withMessage(
         `Sólo se permiten letras, números, espacios, apóstrofes (') y guiones medios (-).`) //OK
@@ -205,7 +195,6 @@ export const highLevelBodyStringSanitizer = () => [
 
     
     body('planetaOrigen')
-    .optional()
     
     .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9' -]+$/).withMessage(
         `Sólo se permiten letras, números, espacios, apóstrofes (') y guiones medios (-).`) //OK
@@ -239,7 +228,6 @@ export const highLevelBodyStringSanitizer = () => [
 
     
     body('debilidad')
-    .optional()
     
     .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9' -]+$/).withMessage(
         `Sólo se permiten letras, números, espacios, apóstrofes (') y guiones medios (-).`) //OK
@@ -282,7 +270,6 @@ export const lowLevelBodyStringValidations = () => [
     // Sanitiza espacios alrededor de la string.
 
     body('nombreSuperHeroe')
-    .optional()
     .exists().withMessage(
         `El nombre es obligatorio.`)
     .trim()
@@ -293,7 +280,6 @@ export const lowLevelBodyStringValidations = () => [
 
 
     body('nombreReal')
-    .optional()
     .exists().withMessage(
         `El nombre real es obligatorio.`)
     .trim()
@@ -304,7 +290,6 @@ export const lowLevelBodyStringValidations = () => [
 
 
     body('planetaOrigen')
-    .optional()
     .exists().withMessage(
         `El planeta de orígen es obligatorio.`)
     .trim()
@@ -315,7 +300,6 @@ export const lowLevelBodyStringValidations = () => [
 
 
     body('debilidad')
-    .optional()
     .exists().withMessage(
         `La debilidad es obligatoria.`)
     .trim()
@@ -334,7 +318,6 @@ export const midLevelBodyStringValidations = () => [
     // 2/1 (''-) / (--') MAX
 
     body('nombreSuperHeroe')
-    .optional()
     .exists().withMessage(
         `El nombre es obligatorio.`)
     .trim()
@@ -350,7 +333,6 @@ export const midLevelBodyStringValidations = () => [
         `El nombre no puede comenzar ni terminar con apóstrofes (') o guiones medios (-).`), //OK
 
     body('nombreReal')
-    .optional()
     .exists().withMessage(
         `El nombre real es obligatorio.`)
     .trim()
@@ -366,7 +348,6 @@ export const midLevelBodyStringValidations = () => [
         `El nombre real no puede comenzar ni terminar con apóstrofes (') o guiones medios (-).`), //OK
 
     body('planetaOrigen')
-    .optional()
     .exists().withMessage(
         `El planeta de orígen es obligatorio.`)
     .trim()
@@ -382,7 +363,6 @@ export const midLevelBodyStringValidations = () => [
         `El planeta de orígen no puede comenzar ni terminar con apóstrofes (') o guiones medios (-).`), //OK
 
     body('debilidad')
-    .optional()
     .exists().withMessage(
         `La debilidad es obligatoria.`)
     .trim()
@@ -421,7 +401,6 @@ export const mongoIdBodyValidator = () => [
 
 export const lowLevelBodyNumberValidations = () => [
     body('edad')
-    .optional()
     .exists().withMessage(
         `El número es obligatorio.`)
     .trim()
@@ -442,7 +421,6 @@ export const lowLevelBodyNumberValidations = () => [
 export const lowLevelBodyArraySanitizer = () => [
     
     body('poderes')
-    .optional()
     .customSanitizer(value => {
 
         const originalString = value.toLowerCase() //Todo a minúsculas.
@@ -505,7 +483,6 @@ export const lowLevelBodyArraySanitizer = () => [
 export const midLevelBodyArraySanitizer = () => [
     
     body('poderes')
-    .optional()
     .customSanitizer(value => {
 
         const originalString = value.toLowerCase() //Todo a minúsculas.
@@ -570,7 +547,6 @@ export const midLevelBodyArraySanitizer = () => [
 export const highLevelBodyArraySanitizer = () => [
     
     body('poderes')
-    .optional()
     .customSanitizer(value => {
 
         //Palabras que estarán en minúsculas
@@ -686,9 +662,11 @@ export const highLevelBodyArraySanitizer = () => [
 
 export const lowLevelBodyArrayValidations = () => [
         body('poderes')
-        .optional()
         .exists().withMessage(
             `El vector es obligatorio.`)
+
+        .notEmpty().withMessage(
+            'El vector no puede estar vacío.')
 
         .isArray().withMessage(
             `Debe ser un vector.`)
@@ -700,7 +678,6 @@ export const lowLevelBodyArrayValidations = () => [
         }),
 
         body('aliados')
-        .optional()
         .exists().withMessage(
             `El vector es obligatorio.`)
 
@@ -714,7 +691,6 @@ export const lowLevelBodyArrayValidations = () => [
         }),
 
         body('enemigos')
-        .optional()
         .exists().withMessage(
             `El vector es obligatorio.`)
 

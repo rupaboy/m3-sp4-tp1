@@ -7,7 +7,9 @@ import { templateHeroeNuevo, arraySuperheroesBackup } from '../helper/templateHe
 
 class SuperHeroRepository extends IRepository {
     
-    
+
+//GET
+
     async obtenerPorId(id) {;  //OK
         return await SuperHero.findById(id)
     }
@@ -108,27 +110,9 @@ class SuperHeroRepository extends IRepository {
         return await SuperHero.find(consultaRegEx)
     }
 
-    
-    
-    async agregarNuevo(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador) {
-        const hero = new SuperHero(
-            {
-                nombreSuperHeroe: nombreSuperHeroe,
-                nombreReal: nombreReal,
-                edad: edad,
-                planetaOrigen: planetaOrigen,
-                debilidad: debilidad,
-                poderes: poderes,
-                aliados: aliados,
-                enemigos: enemigos,
-                creador: creador
-            }
-        );
-        //console.log(hero)
-        return await hero.save();
-    }
 
-    
+//POST
+
     async agregarNuevoTemplate() { 
         
         const hero = new SuperHero(templateHeroeNuevo);
@@ -148,16 +132,64 @@ class SuperHeroRepository extends IRepository {
             //console.log('Todos los heroes han sido añadidos')
             return superheroesCreados
         }
-       
-    //PUT
+ 
     
-    async editarPorId(id) { //
-        return await SuperHero.findOneAndUpdate(
+    async agregarNuevo(
+        nombreSuperHeroe,
+        nombreReal,
+        edad,
+        planetaOrigen,
+        debilidad,
+        poderes,
+        aliados,
+        enemigos,
+        creador
+        ) { const hero = new SuperHero(
+            {
+                nombreSuperHeroe: nombreSuperHeroe,
+                nombreReal: nombreReal,
+                edad: edad,
+                planetaOrigen: planetaOrigen,
+                debilidad: debilidad,
+                poderes: poderes,
+                aliados: aliados,
+                enemigos: enemigos,
+                creador: creador
+            })
+            //console.log(hero)
+            return await hero.save();
+        }
+
+//PUT
+    
+    async editarPorId(
+        id,
+        nombreSuperHeroe,
+        nombreReal,
+        edad,
+        planetaOrigen,
+        debilidad,
+        poderes,
+        aliados,
+        enemigos,
+        creador
+        ){ return await SuperHero.findOneAndUpdate(
             { _id: id },
-            { $set: { edad: 50 } },
+            { $set: {
+                nombreSuperHeroe: nombreSuperHeroe,
+                nombreReal: nombreReal,
+                edad: edad,
+                planetaOrigen: planetaOrigen,
+                debilidad: debilidad,
+                poderes: poderes,
+                aliados: aliados,
+                enemigos: enemigos,
+                creador: creador
+                }
+            },
             { returnDocument: 'after' }
-        );
-    }   
+        )};
+
     
     async editarPorIdAtributoValor(id, atributo, valor) { 
         return await SuperHero.findOneAndUpdate(

@@ -2,28 +2,91 @@
 
 <body>
 
-    <main>
+    <%- include('partials/menu') %>
 
-        <%- include('partials/menu') %>
+    <%- include('partials/header') %>
 
-        <main>
+    <%- include('partials/subNav') %>
     
-            <h5>
-                &ddarr; <%= collectionsMenu[0].name %>
-            </h5>
-        
-            <h6>
-                <%= collectionsMenu[0].description %>
-            </h6>
+<main class="flex-1 flex flex-wrap justify-center m-4 gap-1">
+    
+    <% superheroes.forEach(( heroe )=>{ %>
+        <div class="w-[25em] bg-slate-700 border-2 border-slate-600">
 
-    <h6>
-            <%= superheroes[0].nombreSuperHeroe %>
-        </h6>
-    </main>
+            <header class="grid grid-cols-7 px-3 pt-1 rounded-br-full bg-stone-900 select-none">
+                
+                <h6 class="col-span-6 font-black select-text"><%= heroe.nombreSuperHeroe %></h6>
+                <aside>
+                    <a href="editar/<%= heroe._id %>"><button class="text-center text-yellow-400 hover:text-yellow-100" id="<%= heroe._id %>">
+                        <p class="cursor-pointer text-xl">&#x270D;</p></button></a>
+                    <a href="borrar/<%= heroe._id %>"><button class="text-center text-yellow-400 hover:text-yellow-100" id="<%= heroe._id %>">
+                        <p class="cursor-pointer text-xl">&#10006;</p></button></a>
+                </aside>
+                
+            </header>
 
-    <footer id="mainFooter">
+            <main class="text-sm grid grid-cols-5 p-1">
+                <span class="select-none text-right pr-2 text-slate-950">Nombre:</span>
+                <p class="col-span-4"><%= heroe.nombreReal %></p>
+            </main>
 
-    </footer>
+            <main class="text-sm grid grid-cols-5 p-1 bg-slate-600">
+                <span class="select-none text-right pr-2 text-slate-950">Edad:</span>
+                <p><%= heroe.edad %></p>
+                <span class="select-none text-right pr-2 text-slate-950">Orígen:</span>
+                <p class="col-span-2"><%= heroe.planetaOrigen %></p>
+            </main>
 
-</body>
-</html>
+            <main class="text-sm grid p-1 bg-slate-700 grid grid-cols-5">
+                <span class="select-none text-right pr-2 col-span-1 text-slate-950">Debilidad:</span><p class="col-span-4"><%= heroe.debilidad %></p>
+            </main>
+
+            <% if (heroe.poderes && heroe.poderes.length > 0) { %>
+                <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
+                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Poderes:</span><p class="col-span-4"><%= heroe.poderes.join(', ') %></p>
+                </main>
+            <% } else { %>
+                <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
+                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Poderes:</span><p class="col-span-4">No tiene %></p>
+                </main>
+            <% } %>
+
+            <% if (heroe.aliados && heroe.aliados.length > 0) { %>
+                <main class="grid grid-cols-5 text-sm p-1 bg-slate-700">
+                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Aliados:</span><p class="col-span-4"><%= heroe.aliados.join(', ') %></p>
+                </main>
+            <% } else { %>
+                <main class="grid grid-cols-5 text-sm p-1 bg-slate-700">
+                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Aliados:</span><p class="col-span-4">No tiene %></p>
+                </main>
+            <% } %>
+
+            <% if (heroe.enemigos && heroe.enemigos.length > 0) { %>
+                <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
+                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Enemigos:</span><p class="col-span-4"><%= heroe.enemigos.join(', ') %></p>
+                </main>
+            <% } else { %>
+                <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
+                    <span class="select-none text-right pr-2 col-span-1 text-slate-950">Enemigos:</span><p class="col-span-4">No tiene %></p>
+                </main>
+            <% } %>
+
+            <main class="text-sm grid grid-cols-5 p-1 bg-slate-700">
+                <span class="select-none text-right pr-2 text-slate-950">Creador:</span>
+                <p class="col-span-4"><%= heroe.creador %></p>
+            </main>
+
+            <main class="text-sm grid grid-cols-5 p-1 bg-slate-600">
+                <span class="select-none text-right pr-2 text-slate-950">_id:</span>
+                <p class="col-span-4"><%= heroe._id %></p>
+            </main>
+
+        </div>
+    <% }) %>
+            
+</main>
+
+    <h5 class="text-center text-sm font-light text-gray-300 my-4"><%= site.nav[0].description %></h5>
+
+    <%- include('partials/footer') %>
+    

@@ -1,17 +1,18 @@
-<header class="bg-yellow-500" id="mainHeader">
-    <h3>
-        <%= siteNav[0].title %>
+<header class="items-center py-1 border-y w-full px-2 bg-yellow-500 font-xl text-slate-950 font-black flex flex-wrap items-center justify-end" id="mainHeader">
+    <h3 class="font-black text-yellow-950 pb-1 mr-auto pr-2 text-[2em] border-r-2 border-yellow-600">
+        <%= site.logo %>
     </h3>
-    <h4>
-        <%= siteNav[0].secondaryTitle %>
-    </h4>
 
-    <nav>
-        <a href="<%= siteNav[0].navPages[0].link %>">
-            <button id="<%= siteNav[0].navPages[0].id %>">
-                <p><%= siteNav[0].navPages[0].name %></p>
-            </button>
-        </a>
-        
+    <nav class="flex-wrap text-xs font-light border-yellow-600 text-orange-950">
+        <% site.nav.forEach((page) => { %>
+            <% if ((page.isHidden !== true ) && (page.id !== site.isActive)) { %>
+                <a href="<%= page.link %>">
+                    <button class="hover:border-r-orange-200 hover:text-white min-w-20 bg-yellow-500 py-4 px-4 border-r" id="<%= page.id %>">
+                        <p><%= page.title %></p>
+                    </button>
+                </a>
+            <% } %>
+        <% }); %>
     </nav>
+    
 </header>
