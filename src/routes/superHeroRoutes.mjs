@@ -58,6 +58,7 @@ import {
     agregarNuevoTemplateSuperheroeController,
     agregarNuevoArraySuperheroesController,
     //editarSuperheroePorIdAtributoValorController,
+    editarSuperheroeController,
     editarSuperheroePorIdController,
     editarNombreSuperheroePorIdController,
     editarNombreRealSuperheroePorIdController,
@@ -121,6 +122,8 @@ router.get('/heroes', obtenerTodosLosSuperheroesController); //Listar todos los 
 
 router.get('/heroes/nuevo', crearNuevoSuperheroeController);
 
+router.get('/heroes/editar/:id', editarSuperheroeController);
+
 router.get('/heroes/id/:id', //Buscar héroe por Id
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
@@ -164,6 +167,14 @@ router.post('/heroes/nuevo/array',
 //PUT
 
 router.put('/heroes/editar/:id',
+    mongoIdParamValidator(),
+    mongoIdBodyValidator(),
+    highLevelBodyStringSanitizer(),
+    highLevelBodyArraySanitizer(),
+    lowLevelBodyStringValidations(),
+    lowLevelBodyArrayValidations(),
+    lowLevelBodyNumberValidations(),
+    validationHandler,
     editarSuperheroePorIdController) //..Pasa un id para editar.
 /*
 router.put('/heroes/:id/nombreSuperHeroe/:valor', //Valor: nuevo nombre

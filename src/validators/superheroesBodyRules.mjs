@@ -123,6 +123,21 @@ export const midLevelBodyStringSanitizer = () => [
 
             return palabras
         }),
+    
+    body('creador')
+    .customSanitizer(value => {
+
+        const palabras = value
+            .replace(/\s*-\s*/g, '-')
+            .replace(/\s+/g, ' ')
+            .replace(/-+/g, '-')
+            .replace(/'+/g, "'")
+                .replace(/['\s]*-\s*['\s]*/g, '-')  // Elimina los apóstrofes y espacios alrededor del guion
+                .replace(/[-'](.)/g, (match, p1) => match[0] + p1.toUpperCase())  // Pone en mayúscula la letra después del guion
+                .replace(/^([a-z])/g, (match, p1) => p1.toUpperCase()) // Convierte la primera letra de la frase a mayúscula
+
+            return palabras
+        }),
 
 ];
 
@@ -229,6 +244,37 @@ export const highLevelBodyStringSanitizer = () => [
     
     body('debilidad')
     
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9' -]+$/).withMessage(
+        `Sólo se permiten letras, números, espacios, apóstrofes (') y guiones medios (-).`) //OK
+
+    .customSanitizer(value => {
+
+        const articulos = new Set([ 'de', 'del', 'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'al', 'a', 'ante', 'bajo', 'con', 'contra', 'desde', 'en', 'entre', 'hacia', 'hasta', 'para', 'por', 'según', 'sobre', 'tras', 'y', 'o', 'ni', 'que', 'pero', 'aunque', 'porque', 'pues', 'como', 'cuando', 'donde', 'mientras', 'aunque' ]);
+
+        const palabras = value.split(/([ ']+)/)
+
+        let nuevaFrase = []  //Reconstruye el String poniendo en mayúsculas la primera letra excepto articulos.
+
+            palabras.forEach((palabra, index) => {
+                if (index === 0 || !articulos.has(palabra)) {
+                    const nuevaPalabra = palabra.charAt(0).toUpperCase() + palabra.slice(1); //Que sea mayus
+                    nuevaFrase.push(nuevaPalabra)
+                } else {
+                nuevaFrase.push(palabra) //que sea minus
+            }
+        });
+
+        return nuevaFrase.join('')
+            .replace(/\s*-\s*/g, '-') //"Hola - mundo", se transformará en "Hola-mundo"
+            .replace(/\s+/g, ' ') //Elimina repeticiones de espacios.
+            .replace(/-+/g, '-') //Elimina repeticiones de guiones medios.
+            .replace(/'+/g, "'") ////Elimina repeticiones de apóstrofes.
+                .replace(/['\s]*-\s*['\s]*/g, '-')  // Elimina los apóstrofes y espacios alrededor del guion
+                .replace(/[-'](.)/g, (match, p1) => match[0] + p1.toUpperCase())  // Pone en mayúscula la letra después del guion
+                .replace(/^([a-z])/g, (match, p1) => p1.toUpperCase()); // Convierte la primera letra de la frase a mayúscula
+        }),
+
+    body('creador')
     .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9' -]+$/).withMessage(
         `Sólo se permiten letras, números, espacios, apóstrofes (') y guiones medios (-).`) //OK
 

@@ -1,7 +1,7 @@
 import os from 'os';
 import path from 'path';
 import express from 'express';
-import bodyParser from 'body-parser';
+import methodOverride from 'method-override'
 import cliRouter from './routes/superHeroCliRoutes.mjs';
 import router from './routes/superHeroRoutes.mjs';
 import { connectDB } from './config/dbConfig.mjs';
@@ -30,7 +30,8 @@ app.set('view engine', 'ejs'); //View Engine
 
 //Middleware
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method')); // PUT y DELETE en formularios HTML
 app.use(express.static('/public'));
 
 app.get( '/api/', (req,res) => {

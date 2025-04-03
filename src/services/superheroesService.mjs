@@ -53,8 +53,8 @@ export async function agregarNuevoArraySuperheroes() {
 
 // PUT
 
-export async function editarSuperheroePorId(id) {
-    return await SuperHeroRepository.editarPorId(id);
+export async function editarSuperheroePorId(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador) {
+    return await SuperHeroRepository.editarPorId(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador);
 }
 
 export async function editarSuperheroePorIdAtributoValor(id, valor) {

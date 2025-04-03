@@ -238,6 +238,13 @@ export async function crearNuevoSuperheroeController(req, res) {
     res.render('addSuperhero', { site: activeSite } )
 }
 
+export async function editarSuperheroeController(req, res) {
+    const {id} = req.params;
+    const superheroe = await obtenerSuperheroePorId(id);
+    const activeSite = {...site, isActive: 'edit'}
+    res.render('editSuperhero', { site: activeSite , superheroe } )
+}
+
 export async function agregarNuevoSuperheroeController(req, res) {
     try {
         const {nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador} = req.body
@@ -295,14 +302,14 @@ export async function agregarNuevoArraySuperheroesController(req, res) {
 export async function editarSuperheroePorIdController(req, res) {
     try {
         const {id} = req.params;
-        const superheroeEditado = await editarSuperheroePorId(id)
-        //console.log(superheroeEditado)
-        if (superheroeEditado.length === 0) {
+        const {nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador} = req.body
+        //console.log('en body: ',nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
+        const superheroe = await editarSuperheroePorId(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
+        if (superheroe.length === 0) {
             return res.status(404).send(
                 { mensaje: 'No se encontró el superhéroe editado'});
         }
-        const superheroeFormateado = renderizarSuperheroe(superheroeEditado)
-        res.status(200).json(superheroeFormateado);
+        res.redirect(`/api/heroes/id/${superheroe._id}`);
     } catch (error) {
         res.status(500).send (
             { mensaje: 'Error al editar superhéroe',

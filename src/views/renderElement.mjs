@@ -52,6 +52,21 @@ export const site = {
             isHidden: false,
         },
     ],
+    editNav:
+    [    
+        {
+            id: 'submit',
+            title: 'Confirmar Cambios',
+            description: 'Cambia el superhéroe de la colección',
+            isHidden: false,
+        },
+        {
+            id: 'reset',
+            title: 'Recuperar datos originales',
+            description: 'Recupera los datos originales del formulario',
+            isHidden: false,
+        },
+    ],
     idNav:
     [    
         {
