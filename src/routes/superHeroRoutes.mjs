@@ -51,7 +51,7 @@ import {
     //obtenerSuperheroesMasPoderososPlanetaController,
     //obtenerSuperheroesMenosPoderososPlanetaController,
     //obtenerSuperheroesSinPoderesPlanetaController,
-    //buscarSuperheroesPorAtributoController,
+    buscarSuperheroesPorAtributoController,
     //buscarIdSuperheroesPorAtributoController,
     //agregarNuevoSuperheroeController,
     crearNuevoSuperheroeController,
@@ -91,6 +91,7 @@ const router = express.Router();
 
 //GET
 //Collection
+
 /*
 router.get('/heroes/mas-poderosos',
     obtenerSuperheroesMasPoderososController);
@@ -119,6 +120,7 @@ router.get('/heroes/sin-poderes/:valor', //Valor debe ser un planeta
     validationHandler,
     obtenerSuperheroesSinPoderesPlanetaController);
 */
+
 router.get('/heroes', obtenerTodosLosSuperheroesController); //Listar todos los heroes
 
 router.get('/heroes/nuevo', crearNuevoSuperheroeController);
@@ -133,21 +135,12 @@ router.get('/heroes/id/:id', //Buscar héroe por Id
     validationHandler,
     obtenerSuperheroePorIdController);
 
-/*
-router.get('/heroes/id', obtenerTodosLosSuperheroesPorIdController); //Listar todos con Id
-
-router.get('/heroes/:atributo/:valor', //Búscar por atributo valor,funcionamiento sub-optimo
-    attributeParamSanitizer(),
+router.get('/heroes/buscar/',
     byAttributeParamValidations(),
     validationHandler,
     buscarSuperheroesPorAtributoController);
 
-router.get('/heroes/id/:atributo/:valor', //Búscar Id por atributo valor, funcionamiento sub-optimo
-    attributeParamSanitizer(),
-    byAttributeParamValidations(),
-    validationHandler,
-    buscarIdSuperheroesPorAtributoController)
-*/
+
 //POST
 
 router.post('/heroes/nuevo/',
@@ -160,13 +153,10 @@ router.post('/heroes/nuevo/',
     agregarNuevoSuperheroeController)
 
 /*
-router.post('/heroes/nuevo/template',
-    agregarNuevoTemplateSuperheroeController) //Template ../helper/templateHeroeNuevo.mjs
-
 router.post('/heroes/nuevo/array', 
     agregarNuevoArraySuperheroesController) //Array ../helper/templateHeroeNuevo.mjs
-
 */
+
 //PUT
 
 router.put('/heroes/id/:id',
@@ -321,19 +311,7 @@ router.put('/heroes/:id/quitar/enemigo/:valor', //Valor: quitar un enemigo
     midLevelBodyStringValidations(),
     validationHandler,
     editarSuperheroePorIdQuitarEnemigoController)
-
-    /*
-router.post('/heroes/:id/editar', //Subóptimo. Nuevas funcionalidades arriba.
-    mongoIdBodyValidator(),
-    highLevelBodyStringSanitizer(),
-    highLevelBodyArraySanitizer(),
-    lowLevelBodyStringValidations(),
-    lowLevelBodyArrayValidations(),
-    lowLevelBodyNumberValidations(),
-    validationHandler,
-    agregarNuevoSuperheroeController)
 */
-
 //DELETE
 
 router.delete('/heroes/id/:id', //Borrar por Id

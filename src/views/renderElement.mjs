@@ -27,8 +27,15 @@ export const site = {
             isHidden: true,
         },
     ],
-    subNav:
+    collectionNav:
     [    
+        {
+            id: 'find',
+            title: 'Buscar',
+            description: 'Buscar por atributo',
+            link: '',
+            isHidden: false,
+        },  
         {
             id: 'add',
             title: 'Agregar Héroe',

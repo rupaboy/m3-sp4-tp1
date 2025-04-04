@@ -93,24 +93,24 @@ export async function obtenerTodosLosSuperheroesController(req, res) {
             error: error.message });
     }
 }
-/*
+
 export async function buscarSuperheroesPorAtributoController(req, res) {
     try {
-        const {atributo, valor} = req.params;
+        const {atributo, valor} = req.body;
         const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
         if (superheroes.length === 0) {
             return res.status(404).send(
                 { mensaje: 'No se encontraron superhéroes con ese atributo' });
         }
 
-        const superheroesFormateados = renderizarListaSuperheroes(superheroes);
-        res.status(200).json(superheroesFormateados);
+        res.render('heroes', {superheroes, site});
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al buscar los superhéroes por atributo',
             error: error.message });
     }
 }
 
+/*
 export async function buscarIdSuperheroesPorAtributoController(req, res) {
     try {
         const {atributo, valor} = req.params;
@@ -127,6 +127,7 @@ export async function buscarIdSuperheroesPorAtributoController(req, res) {
             error: error.message });
     }
 }
+
 
 export async function obtenerSuperheroesMasPoderososController(req, res) {
     try {

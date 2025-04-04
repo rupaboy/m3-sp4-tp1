@@ -1,0 +1,63 @@
+<form action="/api/heroes/:atributo/:valor" method="GET">
+    <select name="atributo" id="selectAtributos" class="text-xs mr-2 h-8 my-auto text-yellow-400 text-center h-6 border border-slate-600">
+        <option selected disabled></option>
+        <option value="_id">_id</option>
+        <option value="nombreSuperHeroe">Nombre</option>
+        <option value="nombreReal">Nombre Real</option>
+        <option value="edad">Edad</option>
+        <option value="planetaOrigen">Orígen</option>
+        <option value="debilidad">Debilidad</option>
+        <option value="poderes">Poderes</option>
+        <option value="aliados">Aliados</option>
+        <option value="enemigos">Enemigos</option>
+        <option value="creador">Creador</option>
+    </select>
+
+    <input
+        name="valor"
+        type="text"
+        id="inputValores"
+        class="text-center w-52 my-auto bg-gray-800"
+        required>
+
+    <button class="px-2 select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 py-1 px-2 border-r"
+        type="submit"
+        id="findButton">
+        <a>
+            <p>&telrec;</p>
+            <p class="text-slate-400"><%= site.collectionNav[0].id %></p>
+        </a>
+    </button>
+
+<!-- //// Dynamic Form -->
+
+    <script>    
+    // select & input
+        const selectAtributos = document.getElementById('selectAtributos');
+        const inputValores = document.getElementById('inputValores');
+
+        // Cambiar tipo de input
+        selectAtributos.addEventListener('change', function() {
+            
+            if (selectAtributos.value === 'edad') {
+                inputValores.type = 'number'
+            } else {
+                inputValores.type = 'text'}
+        });
+
+    </script>
+</form>
+
+<!-- Dynamic Form //// -->
+
+
+<button
+class="select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 py-1 px-2"
+id="<%= site.collectionNav[1].id %>">
+    <a>
+        <main>
+            <p>&#43;</p>
+            <p class="text-slate-400"><%= site.collectionNav[1].id %></p>
+        </main>
+    </a>
+</button>

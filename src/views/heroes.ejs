@@ -6,21 +6,29 @@
 
     <%- include('partials/header') %>
 
-    <%- include('partials/subNav') %>
+    <aside class="w-full bg-slate-700 border-b border-slate-800 text-xs flex justify-center px-10 min-h-12">
+
+        <%- include('partials/collectionNav') %>
+
+    </aside>
+    
     
 <main class="flex-1 flex flex-wrap justify-center m-4 gap-1">
     
     <% superheroes.forEach(( heroe )=>{ %>
         <div class="w-[25em] bg-slate-700 border-2 border-slate-600">
 
-            <header class="grid grid-cols-7 px-3 pt-1 rounded-br-full bg-stone-900 select-none">
+            <header class="grid grid-cols-9 px-3 pt-1 rounded-br-full bg-stone-900 select-none">
                 
-                <h6 class="col-span-6 font-black select-text"><%= heroe.nombreSuperHeroe %></h6>
-                <aside>
+                <h6 class="col-span-7 font-black select-text"><%= heroe.nombreSuperHeroe %></h6>
+                <aside class="col-span-2">
+                    <a href="/api/heroes/id/<%= heroe._id %>"><button class="text-center text-yellow-400 hover:text-yellow-100" id="<%= heroe._id %>">
+                        <p class="cursor-pointer text-xl">&#128065;</p></button></a>
                     <a href="/api/heroes/editar/id/<%= heroe._id %>"><button class="text-center text-yellow-400 hover:text-yellow-100" id="<%= heroe._id %>">
                         <p class="cursor-pointer text-xl">&#x270D;</p></button></a>
                     <a href="/api/heroes/borrar/id/<%= heroe._id %>"><button class="text-center text-yellow-400 hover:text-yellow-100" id="<%= heroe._id %>">
                         <p class="cursor-pointer text-xl">&#10006;</p></button></a>
+                    
                 </aside>
                 
             </header>

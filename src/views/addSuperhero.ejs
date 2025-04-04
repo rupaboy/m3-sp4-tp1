@@ -9,7 +9,11 @@
     <!--FORMULARIO-->
 <form action="/api/heroes/nuevo" method="POST">
 
-    <%- include('partials/addNav') %>
+    <aside class="w-full bg-slate-700 border-b border-slate-800 text-xs flex justify-center px-10 min-h-12">
+    
+        <%- include('partials/addNav') %>
+    </aside>
+    
     
 <main class="flex-1 flex flex-wrap justify-center m-4 gap-1 text-gray-200">
     
@@ -115,6 +119,6 @@
 
 </form>
 
-    <h5 class="text-center text-sm font-light text-gray-300 my-4"><%= site.subNav[0].description %></h5>
+    <h5 class="text-center text-sm font-light text-gray-300 my-4"><%= site.collectionNav[0].description %></h5>
 
     <%- include('partials/footer') %>
