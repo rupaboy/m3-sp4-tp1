@@ -95,8 +95,23 @@ export async function obtenerTodosLosSuperheroesController(req, res) {
 }
 
 export async function buscarSuperheroesPorAtributoController(req, res) {
+    
+        const { atributo } = req.params
+        const { valor } = req.params
+
+    console.log("Atributo:", atributo);
+    console.log("Valor:", valor);
+
+        if (!atributo || !valor) {
+            return res.status(400).json({ error: 'Atributo y valor son requeridos' });
+        }
+    
+        console.log( `Registrando héroe con ${atributo}: ${valor}` );
+    }
+/*    
     try {
-        const {atributo, valor} = req.body;
+
+        //const {atributo, valor} = req.body;
         const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
         if (superheroes.length === 0) {
             return res.status(404).send(
@@ -108,7 +123,7 @@ export async function buscarSuperheroesPorAtributoController(req, res) {
         res.status(500).send({ mensaje: 'Error al buscar los superhéroes por atributo',
             error: error.message });
     }
-}
+*/
 
 /*
 export async function buscarIdSuperheroesPorAtributoController(req, res) {

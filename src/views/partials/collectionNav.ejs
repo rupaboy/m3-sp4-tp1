@@ -1,7 +1,7 @@
-<form action="/api/heroes/:atributo/:valor" method="GET">
-    <select name="atributo" id="selectAtributos" class="text-xs mr-2 h-8 my-auto text-yellow-400 text-center h-6 border border-slate-600">
+
+    <select id="selectAtributos" class="text-xs mr-2 h-8 my-auto text-yellow-400 text-center h-6 border border-slate-600">
         <option selected disabled></option>
-        <option value="_id">_id</option>
+        <option value="id">_id</option>
         <option value="nombreSuperHeroe">Nombre</option>
         <option value="nombreReal">Nombre Real</option>
         <option value="edad">Edad</option>
@@ -14,14 +14,12 @@
     </select>
 
     <input
-        name="valor"
         type="text"
         id="inputValores"
         class="text-center w-52 my-auto bg-gray-800"
         required>
 
     <button class="px-2 select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 py-1 px-2 border-r"
-        type="submit"
         id="findButton">
         <a>
             <p>&telrec;</p>
@@ -32,21 +30,44 @@
 <!-- //// Dynamic Form -->
 
     <script>    
-    // select & input
         const selectAtributos = document.getElementById('selectAtributos');
         const inputValores = document.getElementById('inputValores');
+        const findButton = document.getElementById('findButton')
 
-        // Cambiar tipo de input
+
         selectAtributos.addEventListener('change', function() {
-            
+        // Cambiar tipo de input            
             if (selectAtributos.value === 'edad') {
                 inputValores.type = 'number'
             } else {
                 inputValores.type = 'text'}
+        
+        //Vacía el input al cambiar de atributo
+        inputValores.value = null;
+
+        });
+
+        findButton.addEventListener('click', function() {
+            const atributo = selectAtributos.value;
+            const valor = inputValores.value.trim();
+
+            if (!atributo || !valor) {
+                console.log('Seleccione atributo e ingrese un valor')
+                return
+            }
+
+            if (atributo === 'nombreReal') {
+                
+                    const url = `/api/heroes/nombreReal/${encodeURIComponent(valor)}`;
+                    fetch(url)
+                
+                    console.log('error url')
+                
+                
+            }
         });
 
     </script>
-</form>
 
 <!-- Dynamic Form //// -->
 

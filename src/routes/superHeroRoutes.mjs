@@ -135,15 +135,77 @@ router.get('/heroes/id/:id', //Buscar héroe por Id
     validationHandler,
     obtenerSuperheroePorIdController);
 
-router.get('/heroes/buscar/',
-    byAttributeParamValidations(),
+    /*
+router.get('/heroes/nombreSuperHeroe/:nombreSuperHeroe',
+    lowLevelBodyStringSanitizer(),
+    lowLevelBodyStringValidations(),
+    validationHandler,
+    buscarSuperheroesPorAtributoController);
+*/
+router.get('/heroes/nombreReal/:valor',
+    lowLevelParamStringSanitizer(),
+    lowLevelParamStringValidations(),
+    validationHandler,
+    buscarSuperheroesPorAtributoController);
+/*
+router.get('/heroes/edad/:edad',
+    lowLevelBodyNumberValidations(),
     validationHandler,
     buscarSuperheroesPorAtributoController);
 
+router.get('/heroes/planetaOrigen/:planetaOrigen',
+    lowLevelBodyStringSanitizer(),
+    lowLevelBodyStringValidations(),
+    validationHandler,
+    buscarSuperheroesPorAtributoController);
+
+router.get('/heroes/debilidad/:debilidad',
+    lowLevelBodyStringSanitizer(),
+    lowLevelBodyStringValidations(),
+    validationHandler,
+    buscarSuperheroesPorAtributoController);
+
+router.get('/heroes/poderes/:poderes',
+    lowLevelBodyStringSanitizer(),
+    lowLevelBodyStringValidations(),
+    validationHandler,
+    buscarSuperheroesPorAtributoController);
+
+router.get('/heroes/aliados/:aliados',
+    lowLevelBodyStringSanitizer(),
+    lowLevelBodyStringValidations(),
+    validationHandler,
+    buscarSuperheroesPorAtributoController);
+
+router.get('/heroes/enemigos/:enemigos',
+    lowLevelBodyStringSanitizer(),
+    lowLevelBodyStringValidations(),
+    validationHandler,
+    buscarSuperheroesPorAtributoController);
+
+router.get('/heroes/creador/:creador',
+    lowLevelBodyStringSanitizer(),
+    lowLevelBodyStringValidations(),
+    validationHandler,
+    buscarSuperheroesPorAtributoController);
+*/
 
 //POST
 
+/*
+router.get('/heroes/:atributo/:valor',
+    mongoIdBodyValidator(),
+    //highLevelBodyStringSanitizer(),
+    //highLevelBodyArraySanitizer(),
+    lowLevelBodyStringValidations(),
+    //lowLevelBodyArrayValidations(),
+    lowLevelBodyNumberValidations(),
+    validationHandler,
+    buscarSuperheroesPorAtributoController)
+*/
+
 router.post('/heroes/nuevo/',
+    mongoIdBodyValidator(),
     highLevelBodyStringSanitizer(),
     highLevelBodyArraySanitizer(),
     lowLevelBodyStringValidations(),
