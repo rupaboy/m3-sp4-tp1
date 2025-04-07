@@ -44,7 +44,7 @@ app.use('/api/', router);
 
 //Manejo de errores para rutas no encontradas
 app.use((req,res,next) => {
-    site.errorTag = site.nav[2].description
+    site.errorTag = 'Página no encontrada'
     const activeSite = { ...site, isActive: 'error404'}
     res.render('404', { site: activeSite })
 })

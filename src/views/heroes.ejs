@@ -21,13 +21,13 @@
             <header class="grid grid-cols-9 px-3 pt-1 rounded-br-full bg-stone-900 select-none">
                 
                 <h6 class="col-span-7 font-black select-text"><%= heroe.nombreSuperHeroe %></h6>
-                <aside class="col-span-2">
+                <aside class="col-span-2 grid grid-cols-3 items-center">
                     <a href="/api/heroes/id/<%= heroe.id %>"><button class="text-center text-yellow-400 hover:text-yellow-100" id="<%= heroe.id %>">
-                        <p class="cursor-pointer text-xl">&#128065;</p></button></a>
+                        <p class="cursor-pointer text-xl"><%= site.nav[5].icon %></p></button></a>
                     <a href="/api/heroes/editar/id/<%= heroe.id %>"><button class="text-center text-yellow-400 hover:text-yellow-100" id="<%= heroe.id %>">
-                        <p class="cursor-pointer text-xl">&#x270D;</p></button></a>
+                        <p class="cursor-pointer text-xl"><%= site.resultNav[0].icon %></p></button></a>
                     <a href="/api/heroes/borrar/id/<%= heroe.id %>"><button class="text-center text-yellow-400 hover:text-yellow-100" id="<%= heroe.id %>">
-                        <p class="cursor-pointer text-xl">&#10006;</p></button></a>
+                        <p class="cursor-pointer text-xl"><%= site.deleteNav[0].icon %></p></button></a>
                     
                 </aside>
                 

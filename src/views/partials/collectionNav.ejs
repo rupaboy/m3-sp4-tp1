@@ -1,3 +1,15 @@
+<!-- Add -->
+<button
+class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
+id="<%= site.collectionNav[1].id %>">
+    <a href="<%= site.collectionNav[1].link %>">
+        <main>
+            <p><%= site.collectionNav[1].icon %></p>
+            <p class="text-slate-400"><%= site.collectionNav[1].id %></p>
+        </main>
+    </a>
+</button>
+
 
 <!-- INICIA CUERPO DE LA SEARCH BAR ( SCRIPT JS AL FINAL DEL DOCUMENTO )-->
 
@@ -27,24 +39,25 @@
     <button class="px-2 select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2 border-r"
         type="submit"
         id="findButton">
-            <p>&telrec;</p>
+            <p><%= site.collectionNav[0].icon %></p>
             <p class="text-slate-400"><%= site.collectionNav[0].id %></p>
     </button>
 
 </form>
 <!-- FINALIZA CUERPO DE LA SEARCH BAR ( SCRIPT JS AL FINAL DEL DOCUMENTO )-->
 
-
-<button
+<!-- Todos los heroes -->
+<button 
 class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
-id="<%= site.collectionNav[1].id %>">
-    <a>
+id="<%= site.nav[1].id %>">
+    <a href="<%= site.nav[1].link %>">
         <main>
-            <p>&#43;</p>
-            <p class="text-slate-400"><%= site.collectionNav[1].id %></p>
+            <p><%= site.nav[1].icon %></p>
+            <p class="text-slate-400"><%= site.nav[1].id %></p>
         </main>
     </a>
 </button>
+
 
 
 <!-- //// JS Dynamic Form -->

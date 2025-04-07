@@ -91,7 +91,8 @@ export async function obtenerTodosLosSuperheroesController(req, res) {
     try {
         const superheroes = await obtenerTodosLosSuperheroes();
 
-        res.status(200).render('heroes', {superheroes, site});
+        const activeSite = { ...site, isActive: 'heroes'}
+        res.status(200).render('heroes', {superheroes, site: activeSite});
     } catch (error) {
         site.errorTag = `Error al obtener los superhéroes'. (${error.message})`
         const activeSite = { ...site, isActive: 'error500'}
