@@ -2,7 +2,7 @@ export const site = {
     title: 'g8 | CRUD',
     logo: 'g8',
     isActive: 'heroes',
-    mainTag: '',
+    errorTag: '',
     nav:
     [
         {
@@ -22,8 +22,22 @@ export const site = {
         {
             id: 'error404',
             title: 'Error 404',
-            description: 'Página no disponible',
+            description: 'Página no encontrada',
             link: '404',
+            isHidden: true,
+        },
+        {
+            id: 'error500',
+            title: 'Error 500',
+            description: 'Error de datos del servidor',
+            link: '500',
+            isHidden: true,
+        },
+        {
+            id: 'error400',
+            title: 'Error 400',
+            description: 'Solicitud incorrecta',
+            link: '400',
             isHidden: true,
         },
     ],

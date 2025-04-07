@@ -5,6 +5,7 @@ import SuperHero from '../models/SuperHero.mjs';
 import IRepository from '../repositories/IRepository.mjs';
 import { templateHeroeNuevo, arraySuperheroesBackup } from '../helper/templateHeroeNuevo.mjs';
 
+
 class SuperHeroRepository extends IRepository {
     
 
@@ -21,22 +22,36 @@ class SuperHeroRepository extends IRepository {
 
 
     async buscarPorAtributo(atributo, valor) { //Testing
-        const valorLowCase = valor.toLowerCase();
-        const valorRegEx = new RegExp(valorLowCase, 'i');
         
-        switch(atributo) {
-            case 'edad':
-                {
-                    return await SuperHero.find({[atributo]: valor});
-                }
-            default:
-                {
-                    const consultaRegEx = {
-                        [atributo]: { $regex: valorRegEx }}   
-                        return await SuperHero.find(consultaRegEx);
-                }
-        }         
-    }
+            const valorLowCase = valor.toLowerCase();
+            const valorRegEx = new RegExp(valorLowCase, 'i');
+
+            const consultaRegEx = {
+                [atributo]: { $regex: valorRegEx }}   
+
+        if (atributo === '_id') {
+            return await SuperHero.findById(valor)
+        }
+
+        else if (atributo !== 'edad') {
+            return await SuperHero.find(consultaRegEx);
+        }
+
+        else {
+
+            const valorNumerico = Number(valor);
+            
+            if (isNaN(valorNumerico)) {
+                throw new Error("El valor de edad debe ser un número válido.");
+            }
+            
+            return await SuperHero.find({
+                edad: valorNumerico
+            });
+
+        }
+
+    }         
 
     
     async obtenerMasPoderosos() { //OK Old MAYORES-30

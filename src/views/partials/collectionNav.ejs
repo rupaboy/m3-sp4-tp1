@@ -1,79 +1,42 @@
 
-    <select id="selectAtributos" class="text-xs mr-2 h-8 my-auto text-yellow-400 text-center h-6 border border-slate-600">
-        <option selected disabled></option>
-        <option value="id">_id</option>
-        <option value="nombreSuperHeroe">Nombre</option>
-        <option value="nombreReal">Nombre Real</option>
-        <option value="edad">Edad</option>
-        <option value="planetaOrigen">Orígen</option>
-        <option value="debilidad">Debilidad</option>
-        <option value="poderes">Poderes</option>
-        <option value="aliados">Aliados</option>
-        <option value="enemigos">Enemigos</option>
-        <option value="creador">Creador</option>
-    </select>
+<!-- INICIA CUERPO DE LA SEARCH BAR ( SCRIPT JS AL FINAL DEL DOCUMENTO )-->
 
-    <input
-        type="text"
-        id="inputValores"
-        class="text-center w-52 my-auto bg-gray-800"
-        required>
+<form id="searchBar" method="POST" action="/api/heroes/buscar" class="flex items-center">
 
-    <button class="px-2 select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 py-1 px-2 border-r"
+        <select id="selectAtributos" class="h-8 mr-2 text-yellow-400 text-center border border-slate-600">
+            <option selected disabled></option>
+            <option value="_id">id</option>
+            <option value="nombreSuperHeroe">Nombre</option>
+            <option value="nombreReal">Nombre Real</option>
+            <option value="edad">Edad</option>
+            <option value="planetaOrigen">Orígen</option>
+            <option value="debilidad">Debilidad</option>
+            <option value="poderes">Poderes</option>
+            <option value="aliados">Aliados</option>
+            <option value="enemigos">Enemigos</option>
+            <option value="creador">Creador</option>
+        </select>
+        <input
+            min= 0
+            type="text"
+            id="inputValores"
+            class="text-center h-8 w-52 bg-gray-800"
+            required>
+    
+
+    <button class="px-2 select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2 border-r"
+        type="submit"
         id="findButton">
-        <a>
             <p>&telrec;</p>
             <p class="text-slate-400"><%= site.collectionNav[0].id %></p>
-        </a>
     </button>
 
-<!-- //// Dynamic Form -->
-
-    <script>    
-        const selectAtributos = document.getElementById('selectAtributos');
-        const inputValores = document.getElementById('inputValores');
-        const findButton = document.getElementById('findButton')
-
-
-        selectAtributos.addEventListener('change', function() {
-        // Cambiar tipo de input            
-            if (selectAtributos.value === 'edad') {
-                inputValores.type = 'number'
-            } else {
-                inputValores.type = 'text'}
-        
-        //Vacía el input al cambiar de atributo
-        inputValores.value = null;
-
-        });
-
-        findButton.addEventListener('click', function() {
-            const atributo = selectAtributos.value;
-            const valor = inputValores.value.trim();
-
-            if (!atributo || !valor) {
-                console.log('Seleccione atributo e ingrese un valor')
-                return
-            }
-
-            if (atributo === 'nombreReal') {
-                
-                    const url = `/api/heroes/nombreReal/${encodeURIComponent(valor)}`;
-                    fetch(url)
-                
-                    console.log('error url')
-                
-                
-            }
-        });
-
-    </script>
-
-<!-- Dynamic Form //// -->
+</form>
+<!-- FINALIZA CUERPO DE LA SEARCH BAR ( SCRIPT JS AL FINAL DEL DOCUMENTO )-->
 
 
 <button
-class="select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 py-1 px-2"
+class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
 id="<%= site.collectionNav[1].id %>">
     <a>
         <main>
@@ -82,3 +45,52 @@ id="<%= site.collectionNav[1].id %>">
         </main>
     </a>
 </button>
+
+
+<!-- //// JS Dynamic Form -->
+
+<script>
+
+        const selectAtributos = document.getElementById('selectAtributos');
+        const inputValores = document.getElementById('inputValores');
+        const findButton = document.getElementById('findButton');
+        const searchBar = document.getElementById('searchBar');
+
+        selectAtributos.value = null;
+        inputValores.value = null;
+
+        selectAtributos.addEventListener('change', function() {
+        // Cambiar tipo de input            
+            if (selectAtributos.value === 'edad') {
+                inputValores.type = 'number'
+                inputValores.name = 'edad'
+            } else {
+                inputValores.type = 'text'
+                inputValores.name = selectAtributos.value
+            }
+            //Vacía el input al cambiar de atributo
+            inputValores.value = null;
+            atributo = selectAtributos.value
+        });
+
+    //Submit Handler
+    findButton.addEventListener('click',(event) => {
+        event.preventDefault();
+    
+        const valor = inputValores.value
+        const atributo = selectAtributos.value
+
+        if (!atributo || !valor) {
+            alert('Seleccione atributo e ingrese un valor')
+            return
+        }
+        else
+        {
+        searchBar.submit();  // Envia el formulario
+        }
+    })
+
+
+</script>
+
+<!-- Dynamic Form //// -->

@@ -153,6 +153,22 @@ export const lowLevelParamNumberValidations = () => [
         'El número debe ser mayor o igual a 0.')
 ];
 
+export const lowLevelParamEdadValidations = () => [
+    param('valor')
+    .exists().withMessage(
+        `La edad es obligatoria.`)
+    .trim()
+
+    .notEmpty().withMessage(
+        `La edad no puede expresarse como un valor vacío.`)
+
+    .isNumeric().withMessage(
+        `La edad debe expresarse con números.`)
+        
+    .custom(value => parseFloat(value) >= 0).withMessage(
+        'La edad debe ser mayor o igual a 0.')
+];
+
 
 // ARRAY __________________________________________________ SANITIZER
 
@@ -285,40 +301,22 @@ export const attributeParamSanitizer = () => [
 
 export const byAttributeParamValidations = () => [
 
+    param('atributo'),
     param('valor')
-    .customSanitizer(value => {
+    .customSanitizer((value, {req} )=> {
 
-
-        const valueLowCase = value.toLowerCase();
-        
-        switch (valueLowCase) {
-
-            case 'nombresuperheroe':
-            case 'nombrereal':
-            case 'planetaorigen':
-            case 'debilidad' : {
-                highLevelParamStringSanitizer();
-                lowLevelParamStringValidations();
-                midLevelParamStringValidations();
-                break;
-            }
-
-            case 'edad': {
-                lowLevelParamNumberValidations();
-                break;
-            }
-
-            case 'poderes':
-            case 'aliados':
-            case 'enemigos': { 
-                lowLevelParamArrayValidations()
-                break;
-            }
-
-            default: return value;
-
-        };
-    })
-];    
+        if (atributo !== 'edad') {
+            lowLevelParamNumberValidations()
+            
+        } else if (atributo === 'id') {
+            mongoIdParamValidator()
+            
+        } else {
+            lowLevelParamStringSanitizer()
+            lowLevelParamStringValidations()
+            midLevelParamStringValidations()
+        } return true
+    }) 
+];
 
 

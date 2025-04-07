@@ -1,6 +1,7 @@
 //Define las rutas necesarias para cada operación del controlador.
 
 import express from 'express';
+import { validationResult } from 'express-validator';
 
     //Express-Validator
 import { validationHandler } from '../validators/errorHandler.mjs';
@@ -20,16 +21,18 @@ import {
     lowLevelParamArraySanitizer,
     midLevelParamArraySanitizer,
     highLevelParamArraySanitizer,
+    lowLevelParamEdadValidations,
 
 } from '../validators/superheroesParamRules.mjs';
 
 import {
     //Validators for Body
+    mongoIdBodyValidator,
     lowLevelBodyStringValidations,
     midLevelBodyStringValidations,
     lowLevelBodyNumberValidations,
     lowLevelBodyArrayValidations,
-    mongoIdBodyValidator,
+    lowLevelBodySearchValidations,
     //Sanitizers for Body
     lowLevelBodyStringSanitizer,
     midLevelBodyStringSanitizer,
@@ -37,6 +40,7 @@ import {
     lowLevelBodyArraySanitizer,
     midLevelBodyArraySanitizer,
     highLevelBodyArraySanitizer,
+    lowLevelBodySearchSanitizer,
 
 } from '../validators/superheroesBodyRules.mjs';
 
@@ -51,6 +55,7 @@ import {
     //obtenerSuperheroesMasPoderososPlanetaController,
     //obtenerSuperheroesMenosPoderososPlanetaController,
     //obtenerSuperheroesSinPoderesPlanetaController,
+    buscarSuperheroesPorURLController,
     buscarSuperheroesPorAtributoController,
     //buscarIdSuperheroesPorAtributoController,
     //agregarNuevoSuperheroeController,
@@ -135,13 +140,19 @@ router.get('/heroes/id/:id', //Buscar héroe por Id
     validationHandler,
     obtenerSuperheroePorIdController);
 
+router.get('/heroes/_id/:id', //Buscar héroe por Id
+    mongoIdParamValidator(),
+    mongoIdBodyValidator(),
+    validationHandler,
+    obtenerSuperheroePorIdController);
+
     /*
 router.get('/heroes/nombreSuperHeroe/:nombreSuperHeroe',
     lowLevelBodyStringSanitizer(),
     lowLevelBodyStringValidations(),
     validationHandler,
     buscarSuperheroesPorAtributoController);
-*/
+
 router.get('/heroes/nombreReal/:valor',
     lowLevelParamStringSanitizer(),
     lowLevelParamStringValidations(),
@@ -189,30 +200,39 @@ router.get('/heroes/creador/:creador',
     validationHandler,
     buscarSuperheroesPorAtributoController);
 */
+/*
+router.get('/heroes/comparar', (req,res) => {
+    res.send('comparar API')
+})
+*/
+
+
+router.get('/heroes/:atributo/:valor',
+    attributeParamSanitizer(),
+    //byAttributeParamValidations(),
+    validationHandler,
+    buscarSuperheroesPorURLController)
+    
 
 //POST
 
-/*
-router.get('/heroes/:atributo/:valor',
-    mongoIdBodyValidator(),
-    //highLevelBodyStringSanitizer(),
-    //highLevelBodyArraySanitizer(),
-    lowLevelBodyStringValidations(),
-    //lowLevelBodyArrayValidations(),
-    lowLevelBodyNumberValidations(),
+router.post('/heroes/buscar/',
+    lowLevelBodySearchSanitizer(),
+    lowLevelBodySearchValidations(),
     validationHandler,
     buscarSuperheroesPorAtributoController)
-*/
+
 
 router.post('/heroes/nuevo/',
     mongoIdBodyValidator(),
-    highLevelBodyStringSanitizer(),
     highLevelBodyArraySanitizer(),
-    lowLevelBodyStringValidations(),
+    highLevelBodyStringSanitizer(),
     lowLevelBodyArrayValidations(),
+    lowLevelBodyStringValidations(),
     lowLevelBodyNumberValidations(),
     validationHandler,
     agregarNuevoSuperheroeController)
+
 
 /*
 router.post('/heroes/nuevo/array', 
@@ -224,8 +244,8 @@ router.post('/heroes/nuevo/array',
 router.put('/heroes/id/:id',
     mongoIdParamValidator(),
     mongoIdBodyValidator(),
-    highLevelBodyStringSanitizer(),
     highLevelBodyArraySanitizer(),
+    highLevelBodyStringSanitizer(),
     lowLevelBodyStringValidations(),
     lowLevelBodyArrayValidations(),
     lowLevelBodyNumberValidations(),

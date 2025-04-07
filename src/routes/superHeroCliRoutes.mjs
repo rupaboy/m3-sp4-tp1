@@ -83,16 +83,6 @@ import {
 const cliRouter = express.Router();
 
 
-
-/*
-mongoDBRouter.get('/', (req, res) => {
-    res.render('mongodb', {currentNav: siteNav[2], webModule, collectionsMenu})
-})
-*/
-
-
-
-
 //GET
 //Collection
 
@@ -147,8 +137,8 @@ cliRouter.get('/heroes/id/:atributo/:valor', //Búscar Id por atributo valor, fu
 //POST
 
 cliRouter.post('/heroes/nuevo/',
-    highLevelBodyStringSanitizer(),
     highLevelBodyArraySanitizer(),
+    highLevelBodyStringSanitizer(),
     lowLevelBodyStringValidations(),
     lowLevelBodyArrayValidations(),
     lowLevelBodyNumberValidations(),

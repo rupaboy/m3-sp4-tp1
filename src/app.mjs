@@ -27,12 +27,11 @@ const __dirname = path.dirname(__filename);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs'); //View Engine
 
-
 //Middleware
 app.use(express.json());
 app.use(express.urlencoded())
 app.use(methodOverride('_method')); // PUT y DELETE en formularios HTML
-app.use(express.static('/public'));
+//app.use(express.static('/public'));
 
 app.get( '/api/', (req,res) => {
     const activeSite = {...site, isActive: 'home'}
@@ -45,6 +44,7 @@ app.use('/api/', router);
 
 //Manejo de errores para rutas no encontradas
 app.use((req,res,next) => {
+    site.errorTag = site.nav[2].description
     const activeSite = { ...site, isActive: 'error404'}
     res.render('404', { site: activeSite })
 })

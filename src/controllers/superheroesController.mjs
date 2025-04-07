@@ -55,15 +55,18 @@ import {
 export async function obtenerSuperheroePorIdController(req, res) {
     try {
         const {id} = req.params;
-        const superheroe = await obtenerSuperheroePorId(id);
+        const superheroes = await obtenerSuperheroePorId(id);
         const activeSite = {...site, isActive: 'result'};
-        if (!superheroe) {
-            return res.status(404).send({ mensaje: 'Superhéroe por _id no encontrado' });
+        if (!superheroes) {
+            site.errorTag = `No se encontró un superhéroe con ese _id'. (${error.message})`
+            const activeSite = { ...site, isActive: 'error404'}
+            return res.status(404).render('404', { site: activeSite })
         }
-        res.render('result', {superheroe, site: activeSite });
+        res.render('result', {superheroes, site: activeSite });
     } catch (error) {
-        res.status(500).send({ mensaje: 'Error al obtener Superheroe por _id',
-            error: error.message });
+        site.errorTag = `Error al obtener superhéroe por _id'. (${error.message})`
+        const activeSite = { ...site, isActive: 'error500'}
+        res.status(500).render('500', { site: activeSite })
     }
 }
 /*
@@ -84,46 +87,77 @@ export async function obtenerTodosLosSuperheroesPorIdController(req, res) {
 */
 
 export async function obtenerTodosLosSuperheroesController(req, res) {
+
     try {
         const superheroes = await obtenerTodosLosSuperheroes();
 
-        res.render('heroes', {superheroes, site});
+        res.status(200).render('heroes', {superheroes, site});
     } catch (error) {
-        res.status(500).send({ mensaje: 'Error al obtener los Superhéroes',
-            error: error.message });
+        site.errorTag = `Error al obtener los superhéroes'. (${error.message})`
+        const activeSite = { ...site, isActive: 'error500'}
+        res.status(500).render('500', { site: activeSite })
     }
 }
 
-export async function buscarSuperheroesPorAtributoController(req, res) {
+export async function buscarSuperheroesPorURLController(req, res) {
     
-        const { atributo } = req.params
-        const { valor } = req.params
-
-    console.log("Atributo:", atributo);
-    console.log("Valor:", valor);
-
-        if (!atributo || !valor) {
-            return res.status(400).json({ error: 'Atributo y valor son requeridos' });
-        }
+    const {atributo, valor} = req.params
     
-        console.log( `Registrando héroe con ${atributo}: ${valor}` );
-    }
-/*    
     try {
 
-        //const {atributo, valor} = req.body;
-        const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
+        const superheroes = await buscarSuperheroesPorAtributo(atributo, valor)
         if (superheroes.length === 0) {
-            return res.status(404).send(
-                { mensaje: 'No se encontraron superhéroes con ese atributo' });
+            site.errorTag = `No se encontraron superhéroes con ese atributo y/o valor'. (${error.message})`
+            const activeSite = { ...site, isActive: 'error404'}
+            return res.status(404).render('404', { site: activeSite })
         }
 
-        res.render('heroes', {superheroes, site});
+        res.status(200).render('heroes', {superheroes, site});
     } catch (error) {
-        res.status(500).send({ mensaje: 'Error al buscar los superhéroes por atributo',
-            error: error.message });
+        site.errorTag = `Error buscando superhéroes por atributo y/o valor'. (${error.message})`
+        const activeSite = { ...site, isActive: 'error500'}
+        res.status(500).render('500', { site: activeSite })
     }
-*/
+}
+
+
+export async function buscarSuperheroesPorAtributoController(req, res) {
+    
+    try {
+        const searchObject = req.body
+        const atributo = Object.keys(searchObject)[0]
+        const valor = searchObject[atributo];
+
+        //console.log(atributo, valor)
+        
+        const superheroes = await buscarSuperheroesPorAtributo(atributo, valor)
+        
+        if (superheroes.length === 0) {
+            site.errorTag = `No se encontraron superhéroes con ese atributo y/o valor'. (${error.message})`
+            const activeSite = { ...site, isActive: 'error404'}
+            return res.status(404).render('404', { site: activeSite })
+        } 
+        // Si solo se encuentra un héroe en el array, pasar sólo el elemento [0].
+        if (superheroes.length === 1) {
+            const activeSite = { ...site, isActive: 'result'}
+            return res.status(200).render('result', {superheroes: superheroes[0], site: activeSite });
+        }
+        // Si solo se encuentra un héroe (no un array), convertirlo en un array de un solo elemento
+        if (!Array.isArray(superheroes)) {
+            const activeSite = { ...site, isActive: 'result'}
+            return res.status(200).render('result', {superheroes, site: activeSite });
+        }
+        // Si encuentra un array con más de un héroe
+        const activeSite = { ...site, isActive: 'results'}
+        res.status(200).render('heroes', {superheroes, site: activeSite });
+        
+    } catch (error) {
+        site.errorTag = `Error buscando superhéroes por atributo y valor'. (${error.message})`
+        const activeSite = { ...site, isActive: 'error500'}
+        res.status(500).render('500', { site: activeSite })
+    }
+}
+
 
 /*
 export async function buscarIdSuperheroesPorAtributoController(req, res) {
@@ -277,14 +311,16 @@ export async function agregarNuevoSuperheroeController(req, res) {
         //console.log(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
         const superheroe = await agregarNuevoSuperheroe(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
         if (superheroe.length === 0) {
-            return res.status(404).send(
-                { mensaje: 'No se encontró un superhéroe creado' });
+            site.errorTag = `No se encontró un superhéroe creado'. (${error.message})`
+            const activeSite = { ...site, isActive: 'error404'}
+            return res.status(404).render('404', { site: activeSite })
         }
-        res.redirect(`/api/heroes/id/${superheroe._id}`);
+        res.status(200).redirect(`/api/heroes/id/${superheroe._id}`);
+
     } catch (error) {
-        res.status(500).send (
-            { mensaje: 'Error al crear superhéroe',
-            error: error.message });
+        site.errorTag = `Error al crear el superhéroe'. (${error.message})`
+        const activeSite = { ...site, isActive: 'error500'}
+        res.status(500).render('500', { site: activeSite })
     }
 }
 
@@ -336,14 +372,16 @@ export async function editarSuperheroePorIdController(req, res) {
         //console.log('en body: ',nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
         const superheroe = await editarSuperheroePorId(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
         if (superheroe.length === 0) {
-            return res.status(404).send(
-                { mensaje: 'No se encontró el superhéroe editado'});
+            site.errorTag = `Error al crear el superhéroe'. (${error.message})`
+            const activeSite = { ...site, isActive: 'error404'}
+            return res.status(404).render('404', { site: activeSite })
         }
-        res.redirect(`/api/heroes/id/${superheroe._id}`);
+        res.status(200).redirect(`/api/heroes/id/${superheroe._id}`);
+
     } catch (error) {
-        res.status(500).send (
-            { mensaje: 'Error al editar superhéroe',
-            error: error.message });
+        site.errorTag = `Error al editar el superhéroe'. (${error.message})`
+        const activeSite = { ...site, isActive: 'error500'}
+        res.status(500).render('500', { site: activeSite })
     }
 }
 /*
@@ -608,17 +646,20 @@ export async function borrarSuperheroePorIdController(req, res) {
         const superheroe = await borrarSuperheroePorId(id);
         //console.log(superheroeBorrado)
         if (superheroe.lenght === 0) {
-            return res.status(404).send(
-                { mensaje: 'No se encontró una _id para borrar superhéroe'});
+            site.errorTag = `No se encontró un _id para borrar el superhéroe'. (${error.message})`
+            const activeSite = { ...site, isActive: 'error404'}
+            return res.status(404).render('404', { site: activeSite })
         }
-        res.redirect(`/api/heroes`);
+        res.status(200).redirect(`/api/heroes`);
+
     } catch (error) {
-        res.status(500).send (
-            {mensaje: 'Error al borrar superhéroe por Id',
-            error: error.message });
+        site.errorTag = `Error al borrar superhéroe por _id'. (${error.message})`
+        const activeSite = { ...site, isActive: 'error500'}
+        res.status(500).render('500', { site: activeSite })
     }
 }
 
+/*
 export async function borrarSuperheroePorNombreController(req, res) {
     try {
         const {valor} = req.params;
@@ -634,3 +675,4 @@ export async function borrarSuperheroePorNombreController(req, res) {
             error: error.message });
     }
 }
+    */

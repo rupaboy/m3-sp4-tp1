@@ -17,31 +17,31 @@
 
             <header class="grid grid-cols-9 px-3 py-1 rounded-br-full bg-stone-900 select-none">
                 
-                <h6 class="col-span-8 font-black select-text text-gray-200"><%= superheroe.nombreSuperHeroe %></h6>
+                <h6 class="col-span-8 font-black select-text text-gray-200"><%= superheroes.nombreSuperHeroe %></h6>
 
             </header>
 
             <main class="text-sm grid grid-cols-5 p-1">
                 <span class="select-none text-right pr-2 text-yellow-400">Nombre:</span>
-                <p class="col-span-4"><%= superheroe.nombreReal %></p>
+                <p class="col-span-4"><%= superheroes.nombreReal %></p>
             </main>
 
             <main class="text-sm grid grid-cols-5 p-1 bg-slate-600">
                 <span class="select-none text-right pr-2 text-yellow-400">Edad:</span>
-                <p><%= superheroe.edad %></p>
+                <p><%= superheroes.edad %></p>
                 <span class="select-none text-right pr-2 text-yellow-400">Orígen:</span>
-                <p class="col-span-2"><%= superheroe.planetaOrigen %></p>
+                <p class="col-span-2"><%= superheroes.planetaOrigen %></p>
             </main>
 
             <main class="text-sm grid p-1 bg-slate-700 grid grid-cols-5">
                 <span class="select-none text-right pr-2 col-span-1 text-yellow-400">Debilidad:</span>
-                <p class="col-span-4"><%= superheroe.debilidad %></p>
+                <p class="col-span-4"><%= superheroes.debilidad %></p>
             </main>
 
-            <% if (superheroe.poderes && superheroe.poderes.length > 0) { %>
+            <% if (superheroes.poderes && superheroes.poderes.length > 0) { %>
                 <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
                     <span class="select-none text-right pr-2 col-span-1 text-yellow-400">Poderes:</span>
-                    <p class="col-span-4"><%= superheroe.poderes.join(', ') %></p>
+                    <p class="col-span-4"><%= superheroes.poderes.join(', ') %></p>
                 </main>
             <% } else { %>
                 <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
@@ -50,10 +50,10 @@
                 </main>
             <% } %>
 
-            <% if (superheroe.aliados && superheroe.aliados.length > 0) { %>
+            <% if (superheroes.aliados && superheroes.aliados.length > 0) { %>
                 <main class="grid grid-cols-5 text-sm p-1 bg-slate-700">
                     <span class="select-none text-right pr-2 col-span-1 text-yellow-400">Aliados:</span>
-                    <p class="col-span-4"><%= superheroe.aliados.join(', ') %></p>
+                    <p class="col-span-4"><%= superheroes.aliados.join(', ') %></p>
                 </main>
             <% } else { %>
                 <main class="grid grid-cols-5 text-sm p-1 bg-slate-700">
@@ -62,10 +62,10 @@
                 </main>
             <% } %>
 
-            <% if (superheroe.enemigos && superheroe.enemigos.length > 0) { %>
+            <% if (superheroes.enemigos && superheroes.enemigos.length > 0) { %>
                 <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
                     <span class="select-none text-right pr-2 col-span-1 text-yellow-400">Enemigos:</span>
-                    <p class="col-span-4"><%= superheroe.enemigos.join(', ') %></p>
+                    <p class="col-span-4"><%= superheroes.enemigos.join(', ') %></p>
                 </main>
             <% } else { %>
                 <main class="grid grid-cols-5 text-sm p-1 bg-slate-600">
@@ -76,12 +76,12 @@
 
             <main class="text-sm grid grid-cols-5 p-1 bg-slate-700">
                 <span class="select-none text-right pr-2 text-yellow-400">Creador:</span>
-                <p class="col-span-4"><%= superheroe.creador %></p>
+                <p class="col-span-4"><%= superheroes.creador %></p>
             </main>
 
             <main class="text-sm grid grid-cols-5 p-1 bg-slate-600">
                 <span class="select-none text-right pr-2 text-yellow-400">_id:</span>
-                <p class="col-span-4"><%= superheroe._id %></p>
+                <p class="col-span-4"><%= superheroes._id %></p>
             </main>
 
         </div>
