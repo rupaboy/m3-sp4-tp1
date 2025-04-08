@@ -14,7 +14,7 @@ import {
     agregarNuevoSuperheroe,
     agregarNuevoTemplateSuperheroe,
     agregarNuevoArraySuperheroes,
-    //editarSuperheroePorId,
+    editarSuperheroePorId,
     //
     //editarNombreSuperheroePorId,
     //editarNombreRealSuperheroePorId,
@@ -329,10 +329,12 @@ export async function agregarNuevoArraySuperheroesController(req, res) {
 
 export async function editarSuperheroePorIdController(req, res) {
     try {
-        const {id} = req.params;
+        const {id} = req.params
         const {nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador} = req.body
-        //console.log('en body: ',nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
+    
+        console.log('en body: ',id ,nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
         const superheroe = await editarSuperheroePorId(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
+        
         if (superheroe.length === 0) {
             site.errorTag = `Error al crear el superhéroe'. (${error.message})`
             const activeSite = { ...site, isActive: 'error404'}

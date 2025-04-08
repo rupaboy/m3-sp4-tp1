@@ -6,14 +6,19 @@ import express from 'express';
 import { validationHandler } from '../validators/errorHandler.mjs';
 
 import {
-    //Validators for Body
+    //Validators for Search Bar
     lowLevelBodySearchValidations,
-    //Sanitizers for Body
     lowLevelBodySearchSanitizer,
+} from '../validators/superheroesBodySearchRules.mjs';
 
+import {
+    //Validators for Search Bar
+    lowLevelBodySanitizer,
+    lowLevelBodyValidations,
 } from '../validators/superheroesBodyRules.mjs';
 
-    //Controllers
+
+    //Controllers 
 import { 
     
     obtenerTodosLosSuperheroesController,
@@ -139,7 +144,7 @@ router.post('/heroes/nuevo/array',
 //PUT
 
 router.put('/heroes/id/:id',
-
+    lowLevelBodySanitizer(),
     validationHandler,
     editarSuperheroePorIdController) //..Pasa un id para editar.
 /*
