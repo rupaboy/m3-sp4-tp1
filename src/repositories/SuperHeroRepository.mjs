@@ -53,7 +53,7 @@ class SuperHeroRepository extends IRepository {
 
     }         
 
-    
+    /*
     async obtenerMasPoderosos() { //OK Old MAYORES-30
         return await SuperHero.find({
             $expr: { $gte: [{ $size: "$poderes" }, 5 ]}
@@ -148,7 +148,7 @@ class SuperHeroRepository extends IRepository {
             return superheroesCreados
         }
  
-    
+    */
     async agregarNuevo(
         nombreSuperHeroe,
         nombreReal,
@@ -205,7 +205,7 @@ class SuperHeroRepository extends IRepository {
             { returnDocument: 'after' }
         )};
 
-    
+/*
     async editarPorIdAtributoValor(id, atributo, valor) { 
         return await SuperHero.findOneAndUpdate(
             { _id: id },
@@ -347,13 +347,13 @@ class SuperHeroRepository extends IRepository {
             { returnDocument: 'after' }
         );
     }
-
+*/
     
     async borrarPorId(id) {
         return await SuperHero.findByIdAndDelete(id)
     }
 
-    
+/*
     async borrarPorNombre(valor) { 
         
         const nombreLowCase = valor.toLowerCase();
@@ -363,7 +363,7 @@ class SuperHeroRepository extends IRepository {
             { nombreSuperHeroe: nombreRegExp }
         )
     }
-
+*/
 };
 
 export default new SuperHeroRepository();

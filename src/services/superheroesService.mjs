@@ -14,7 +14,7 @@ export async function obtenerSuperheroePorId(id){
 export async function buscarSuperheroesPorAtributo(atributo, valor) {
     return await SuperHeroRepository.buscarPorAtributo(atributo, valor)
 }
-
+/*
 export async function obtenerSuperheroesMasPoderosos() {
     return await SuperHeroRepository.obtenerMasPoderosos();
 }
@@ -38,7 +38,7 @@ export async function obtenerSuperheroesSinPoderes() {
 export async function obtenerSuperheroesSinPoderesPlaneta(valor) {
     return await SuperHeroRepository.obtenerSinPoderesPlaneta(valor);
 }
-
+*/
 export async function agregarNuevoSuperheroe(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador) {
     return await SuperHeroRepository.agregarNuevo(nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
 }
@@ -52,7 +52,7 @@ export async function agregarNuevoArraySuperheroes() {
 }
 
 // PUT
-
+/*
 export async function editarSuperheroePorId(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador) {
     return await SuperHeroRepository.editarPorId(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador);
 }
@@ -116,12 +116,7 @@ export async function editarSuperheroePorIdAgregarEnemigo(id, valor) {
 export async function editarSuperheroePorIdQuitarEnemigo(id, valor) {
     return await SuperHeroRepository.editarPorIdQuitarEnemigo(id, valor)
 }
-
+*/
 export async function borrarSuperheroePorId(id) {
     return await SuperHeroRepository.borrarPorId(id); 
-}
-
-
-export async function borrarSuperheroePorNombre(valor) {
-    return await SuperHeroRepository.borrarPorNombre(valor); 
 }

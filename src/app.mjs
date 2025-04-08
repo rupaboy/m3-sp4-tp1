@@ -2,7 +2,6 @@ import os from 'os';
 import path from 'path';
 import express from 'express';
 import methodOverride from 'method-override'
-import cliRouter from './routes/superHeroCliRoutes.mjs';
 import router from './routes/superHeroRoutes.mjs';
 import { connectDB } from './config/dbConfig.mjs';
 import { fileURLToPath } from 'url';
@@ -39,7 +38,6 @@ app.get( '/api/', (req,res) => {
 })
 
 //Configuración de rutas
-app.use('/api/cli', cliRouter);
 app.use('/api/', router);
 
 //Manejo de errores para rutas no encontradas

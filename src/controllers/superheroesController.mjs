@@ -4,36 +4,35 @@
 import {
     obtenerTodosLosSuperheroes,
     buscarSuperheroesPorAtributo,
-    obtenerSuperheroesMasPoderosos,
-    obtenerSuperheroesMasPoderososPlaneta,
-    obtenerSuperheroesMenosPoderosos,
-    obtenerSuperheroesMenosPoderososPlaneta,
-    obtenerSuperheroesSinPoderes,
-    obtenerSuperheroesSinPoderesPlaneta,
+    //obtenerSuperheroesMasPoderosos,
+    //obtenerSuperheroesMasPoderososPlaneta,
+    //obtenerSuperheroesMenosPoderosos,
+    //obtenerSuperheroesMenosPoderososPlaneta,
+    //obtenerSuperheroesSinPoderes,
+    //obtenerSuperheroesSinPoderesPlaneta,
     obtenerSuperheroePorId,
     agregarNuevoSuperheroe,
     agregarNuevoTemplateSuperheroe,
     agregarNuevoArraySuperheroes,
-    editarSuperheroePorId,
+    //editarSuperheroePorId,
     //
-    editarNombreSuperheroePorId,
-    editarNombreRealSuperheroePorId,
-    editarEdadSuperheroePorId,
-    editarPlanetaOrigenSuperheroePorId,
-    editarDebilidadSuperheroePorId,
-    editarPoderesSuperheroePorId,
-    editarAliadosSuperheroePorId,
-    editarEnemigosSuperheroePorId,
+    //editarNombreSuperheroePorId,
+    //editarNombreRealSuperheroePorId,
+    //editarEdadSuperheroePorId,
+    //editarPlanetaOrigenSuperheroePorId,
+    //editarDebilidadSuperheroePorId,
+    //editarPoderesSuperheroePorId,
+    //editarAliadosSuperheroePorId,
+    //editarEnemigosSuperheroePorId,
     //
-    editarSuperheroePorIdAtributoValor,
-    editarSuperheroePorIdAgregarPoder,
-    editarSuperheroePorIdQuitarPoder,
-    editarSuperheroePorIdAgregarAliado,
-    editarSuperheroePorIdQuitarAliado,
-    editarSuperheroePorIdAgregarEnemigo,
-    editarSuperheroePorIdQuitarEnemigo,
+    //editarSuperheroePorIdAtributoValor,
+    //editarSuperheroePorIdAgregarPoder,
+    //editarSuperheroePorIdQuitarPoder,
+    //editarSuperheroePorIdAgregarAliado,
+    //editarSuperheroePorIdQuitarAliado,
+    //editarSuperheroePorIdAgregarEnemigo,
+    //editarSuperheroePorIdQuitarEnemigo,
     borrarSuperheroePorId,
-    borrarSuperheroePorNombre,
     
 
 
@@ -69,22 +68,7 @@ export async function obtenerSuperheroePorIdController(req, res) {
         res.status(500).render('500', { site: activeSite })
     }
 }
-/*
 
-export async function obtenerTodosLosSuperheroesPorIdController(req, res) {
-    try {
-        const superheroes = await obtenerTodosLosSuperheroes();
-        if (!superheroes) {
-            return res.status(404).send({ mensaje: 'No se encontraron _id de superheroes.' });
-        }
-        const superheroesFormateadosPorId = renderizarListaSuperheroesPorId(superheroes); //Nueva Vista con atributo ID
-        res.status(200).json(superheroesFormateadosPorId);
-    } catch (error) {
-        res.status(500).send({ mensaje: 'Error al obtener los _id de los Superheroes',
-            error: error.message });
-    }
-}
-*/
 
 export async function obtenerTodosLosSuperheroesController(req, res) {
 
@@ -159,26 +143,7 @@ export async function buscarSuperheroesPorAtributoController(req, res) {
     }
 }
 
-
 /*
-export async function buscarIdSuperheroesPorAtributoController(req, res) {
-    try {
-        const {atributo, valor} = req.params;
-        const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
-        if (superheroes.length === 0) {
-            return res.status(404).send(
-                { mensaje: 'No se encontraron _id de superhéroes con ese atributo' });
-        }
-
-        const superheroesFormateados = renderizarListaSuperheroesPorId(superheroes);
-        res.status(200).json(superheroesFormateados);
-    } catch (error) {
-        res.status(500).send({ mensaje: 'Error al buscar _id de superhéroes con ese atributo',
-            error: error.message });
-    }
-}
-
-
 export async function obtenerSuperheroesMasPoderososController(req, res) {
     try {
         const superheroes = await obtenerSuperheroesMasPoderosos();
@@ -280,10 +245,6 @@ export async function obtenerSuperheroesSinPoderesPlanetaController(req, res) {
     }
 }
 
-(req,res) => {
-    const activeSite = {...site, isActive: 'add'}
-    res.render('addSuperhero', { site: activeSite } )
-}
 */
 
 export async function crearNuevoSuperheroeController(req, res) {
@@ -659,21 +620,3 @@ export async function borrarSuperheroePorIdController(req, res) {
         res.status(500).render('500', { site: activeSite })
     }
 }
-
-/*
-export async function borrarSuperheroePorNombreController(req, res) {
-    try {
-        const {valor} = req.params;
-        const superheroeBorradoPorNombre = await borrarSuperheroePorNombre(valor);
-        if (superheroeBorradoPorNombre.length === 0) {
-            return res.status(404).send(
-                { mensaje: 'No se encontró el nombre del superhéroe a borrar' });
-        }
-        const superheroeFormateado = renderizarSuperheroe(superheroeBorradoPorNombre)
-        res.status(200).json(superheroeFormateado);
-    } catch (error) {
-        res.status(500).send({ mensaje: 'Error al borrar superhéroe con ese nombre',
-            error: error.message });
-    }
-}
-    */
