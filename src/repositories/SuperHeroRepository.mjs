@@ -177,33 +177,23 @@ class SuperHeroRepository extends IRepository {
 
 //PUT
     
-    async editarPorId(
-        id,
-        nombreSuperHeroe,
-        nombreReal,
-        edad,
-        planetaOrigen,
-        debilidad,
-        poderes,
-        aliados,
-        enemigos,
-        creador
-        ){ return await SuperHero.findOneAndUpdate(
+    async editarPorId(id, updatedHero) {
+
+        const oldHero = await SuperHero.findById(id);
+        const newHero = {}
+
+        for (let atributo in updatedHero) {
+            if (updatedHero[atributo] !== oldHero[atributo]) {
+                newHero[atributo] = updatedHero[atributo]
+            }
+        } //Bucle for ...in - atributo tomará el nombre de cada clave. 
+
+        return await SuperHero.findOneAndUpdate(
             { _id: id },
-            { $set: {
-                nombreSuperHeroe: nombreSuperHeroe,
-                nombreReal: nombreReal,
-                edad: edad,
-                planetaOrigen: planetaOrigen,
-                debilidad: debilidad,
-                poderes: poderes,
-                aliados: aliados,
-                enemigos: enemigos,
-                creador: creador
-                }
-            },
+            { $set: newHero},
             { returnDocument: 'after' }
-        )};
+        )
+    };
 
 /*
     async editarPorIdAtributoValor(id, atributo, valor) { 

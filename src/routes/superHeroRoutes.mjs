@@ -13,7 +13,7 @@ import {
 
 import {
     //Validators for Search Bar
-    lowLevelBodySanitizer,
+    midLevelBodySanitizer,
     lowLevelBodyValidations,
 } from '../validators/superheroesBodyRules.mjs';
 
@@ -144,7 +144,7 @@ router.post('/heroes/nuevo/array',
 //PUT
 
 router.put('/heroes/id/:id',
-    lowLevelBodySanitizer(),
+    midLevelBodySanitizer(),
     validationHandler,
     editarSuperheroePorIdController) //..Pasa un id para editar.
 /*

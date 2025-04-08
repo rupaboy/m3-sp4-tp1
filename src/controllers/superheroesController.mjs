@@ -330,10 +330,9 @@ export async function agregarNuevoArraySuperheroesController(req, res) {
 export async function editarSuperheroePorIdController(req, res) {
     try {
         const {id} = req.params
-        const {nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador} = req.body
+        const updatedHero = req.body
     
-        console.log('en body: ',id ,nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
-        const superheroe = await editarSuperheroePorId(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador)
+        const superheroe = await editarSuperheroePorId(id, updatedHero)
         
         if (superheroe.length === 0) {
             site.errorTag = `Error al crear el superhéroe'. (${error.message})`
