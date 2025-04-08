@@ -59,7 +59,6 @@ import {
 } from '../controllers/superheroesController.mjs';
 
 
-
 // Router
 const router = express.Router();
 
@@ -116,8 +115,6 @@ router.get('/heroes/comparar', (req,res) => {
 */
 
 router.get('/heroes/:atributo/:valor',
-
-    validationHandler,
     buscarSuperheroesPorURLController)
     
 
@@ -131,7 +128,8 @@ router.post('/heroes/buscar/',
 
 
 router.post('/heroes/nuevo/',
-
+    midLevelBodySanitizer(),
+    lowLevelBodyValidations(),
     validationHandler,
     agregarNuevoSuperheroeController)
 
@@ -145,6 +143,7 @@ router.post('/heroes/nuevo/array',
 
 router.put('/heroes/id/:id',
     midLevelBodySanitizer(),
+    lowLevelBodyValidations(),
     validationHandler,
     editarSuperheroePorIdController) //..Pasa un id para editar.
 /*
