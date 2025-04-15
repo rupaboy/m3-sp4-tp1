@@ -2,6 +2,7 @@ import os from 'os';
 import path from 'path';
 import express from 'express';
 import methodOverride from 'method-override'
+import expressEjsLayouts from 'express-ejs-layouts';
 import router from './routes/superHeroRoutes.mjs';
 import { connectDB } from './config/dbConfig.mjs';
 import { fileURLToPath } from 'url';
@@ -28,9 +29,11 @@ app.set('view engine', 'ejs'); //View Engine
 
 //Middleware
 app.use(express.json());
-app.use(express.urlencoded())
+app.use(express.urlencoded());
 app.use(methodOverride('_method')); // PUT y DELETE en formularios HTML
 //app.use(express.static('/public'));
+app.use(expressEjsLayouts);
+app.set('layout', 'layout')
 
 app.get( '/api/', (req,res) => {
     const activeSite = {...site, isActive: 'home'}
