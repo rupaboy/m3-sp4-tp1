@@ -1,10 +1,3 @@
-<%- include('partials/head') %>
-
-<body>
-
-    <%- include('partials/menu') %>
-
-    <%- include('partials/header') %>
 
     <!--FORMULARIO-->
 <form action="/api/heroes/nuevo" method="POST" class="flex-1">
@@ -12,6 +5,8 @@
     <aside class="w-full bg-slate-700 border-b border-slate-800 text-xs flex justify-center px-10 h-10 content-center">
     
         <%- include('partials/addNav') %>
+        <%- include('partials/collectionNav') %>
+        
     </aside>
     
     
@@ -120,7 +115,3 @@
     <h5 class="text-center text-sm font-light text-gray-300 my-4"><%= site.collectionNav[1].description %></h5>
 
 </form>
-
-    
-
-    <%- include('partials/footer') %>

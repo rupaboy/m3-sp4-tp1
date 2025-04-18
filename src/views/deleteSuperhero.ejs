@@ -1,13 +1,9 @@
-<%- include('partials/head') %>
 
-<body>
-
-    <%- include('partials/menu') %>
-
-    <%- include('partials/header') %>
     <aside class="w-full bg-slate-700 border-b border-slate-800 text-xs flex justify-center px-10 h-10 content-center">
     
         <%- include('partials/deleteNav') %>
+        <%- include('partials/collectionNav') %>
+        
     </aside>
     
     
@@ -91,6 +87,3 @@
     
         <h5 class="text-center text-sm font-light text-gray-300 my-4"><%= site.deleteNav[0].description %></h5>
 </main>
-
-    <%- include('partials/footer') %>
-    

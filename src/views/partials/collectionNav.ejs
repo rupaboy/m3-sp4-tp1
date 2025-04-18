@@ -1,4 +1,5 @@
 <!-- Add -->
+<% if ((site.isActive !== 'add') && (site.isActive !== 'edit') && (site.isActive !== 'delete') && (site.isActive !== 'home')) { %>
 <button
 class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
 id="<%= site.collectionNav[1].id %>">
@@ -9,6 +10,7 @@ id="<%= site.collectionNav[1].id %>">
         </main>
     </a>
 </button>
+<% } %>
 
 
 <!-- INICIA CUERPO DE LA SEARCH BAR ( SCRIPT JS AL FINAL DEL DOCUMENTO )-->
@@ -46,7 +48,9 @@ id="<%= site.collectionNav[1].id %>">
 </form>
 <!-- FINALIZA CUERPO DE LA SEARCH BAR ( SCRIPT JS AL FINAL DEL DOCUMENTO )-->
 
-<!-- Todos los heroes -->
+<!-- Todos los  heroes -->
+
+<% if ((site.isActive !== 'heroes') && (site.isActive !== 'home')) { %>
 <button 
 class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
 id="<%= site.nav[1].id %>">
@@ -57,10 +61,11 @@ id="<%= site.nav[1].id %>">
         </main>
     </a>
 </button>
+<% } %>
 
 
 
-<!-- //// JS Dynamic Form -->
+<!-- //// JS Dynamic Form / Search Bar -->
 
 <script>
 
