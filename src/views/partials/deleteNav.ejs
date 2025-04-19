@@ -1,4 +1,4 @@
-
+    <!-- Confirm -->
     <form class="flex items-center" action="/api/heroes/id/<%= superheroe._id %>?_method=DELETE" method="POST">
         <button
         class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
@@ -11,12 +11,13 @@
         </button>
     </form>        
         
-            <button
-            class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
-                id="<%= site.deleteNav[1].id %>">
-                <a href="/api/heroes/id/<%= superheroe._id %>"> <!--Cancel-->
-                    <p><%= site.deleteNav[1].icon %></p>
-                    <p class="text-slate-400"><%= site.deleteNav[1].id %></p>
-                </a>
-            </button>
+    <!-- Cancel -->
+        <button
+        class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
+            id="<%= site.deleteNav[1].id %>">
+            <a href="/api/heroes/id/<%= superheroe._id %>"> <!--Cancel-->
+                <p><%= site.deleteNav[1].icon %></p>
+                <p class="text-slate-400"><%= site.deleteNav[1].id %></p>
+            </a>
+        </button>
         

@@ -1,4 +1,4 @@
-
+        <!-- Submit -->
         <button
         class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
             type="submit"
@@ -7,6 +7,7 @@
             <p class="text-slate-400"><%= site.addNav[0].id %></p>
         </button>
         
+        <!-- Reset -->
         <button
         class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
             type="reset"
@@ -15,3 +16,15 @@
             <p class="text-slate-400"><%= site.addNav[1].id %></p>
         </button>
 
+       <!-- All -->
+        <button 
+        class="text-xs select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2"
+        id="<%= site.nav[1].id %>">
+            <a href="<%= site.nav[1].link %>">
+                <main>
+                    <p><%= site.nav[1].icon %></p>
+                    <p class="text-slate-400"><%= site.nav[1].id %></p>
+                </main>
+            </a>
+        </button>
+        
