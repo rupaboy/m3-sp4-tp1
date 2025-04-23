@@ -1,16 +1,15 @@
 
     <!--FORMULARIO-->
-
+    <form action="/api/heroes/id/<%= superheroe._id %>?_method=PUT" method="POST" class="flex-1">    
 
     <aside class="w-full bg-slate-700 border-b border-slate-800 text-xs flex justify-center px-10 h-10 content-center">
     
         <%- include('partials/editNav') %>
-        <%- include('partials/collectionNav') %>
         
         
     </aside>
     
-<form action="/api/heroes/id/<%= superheroe._id %>?_method=PUT" method="POST" class="flex-1">    
+
     
 <main class="flex-1 flex flex-wrap justify-center m-4 gap-1 text-gray-200">
     

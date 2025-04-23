@@ -9,7 +9,7 @@ export const validationHandler = (req, res, next) => {
         
         const errorMessages = errors.array().map(error => `${error.msg} (${errors.path})`).join(', ');
 
-
+        
         site.errorTag = `Error de validación de datos: (${errorMessages})`
         const activeSite = { ...site, isActive: 'error400'}
         return res.render('400', { site: activeSite })
