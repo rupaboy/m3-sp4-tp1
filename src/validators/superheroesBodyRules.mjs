@@ -96,9 +96,9 @@ export const midLevelBodySanitizer = () => [
     .customSanitizer(value => {
         
     
-        const number = value.toLowerCase()
+        const inputString = value
                 
-            const numbersOnly = number
+            const numbersOnly = inputString
             .replace(/[^0-9]/g, '') //Elimina todo excepto números 0-9
 
         return numbersOnly

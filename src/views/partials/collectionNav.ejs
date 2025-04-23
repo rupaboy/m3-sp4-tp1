@@ -35,13 +35,13 @@ id="<%= site.collectionNav[1].id %>">
             min= 0
             type="text"
             id="inputValores"
-            class="text-center h-8 w-52 bg-gray-800"
+            class="h-8 w-30 bg-gray-800 text-center"
             required>
     
 
     <button class="px-2 select-none cursor-pointer text-center text-yellow-400 hover:text-yellow-100 px-2 border-r"
         type="submit"
-        id="findButton">
+        id="Button">
             <p><%= site.collectionNav[0].icon %></p>
             <p class="text-slate-400"><%= site.collectionNav[0].id %></p>
     </button>
@@ -72,7 +72,7 @@ id="<%= site.nav[1].id %>">
 
         const selectAtributos = document.getElementById('selectAtributos');
         const inputValores = document.getElementById('inputValores');
-        const findButton = document.getElementById('findButton');
+        const Button = document.getElementById('Button');
         const searchBar = document.getElementById('searchBar');
 
         selectAtributos.value = null;
@@ -93,7 +93,7 @@ id="<%= site.nav[1].id %>">
         });
 
     //Submit Handler
-    findButton.addEventListener('click',(event) => {
+    Button.addEventListener('click',(event) => {
         event.preventDefault();
     
         const valor = inputValores.value
